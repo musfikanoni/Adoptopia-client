@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const NavBar = () =>  {
     const navLinks = <>
             <Link to='/'>Home</Link>
-            <Link to='/menu'>Our Menu</Link>
-            <Link to='/order/salad'>Order Food</Link>
+            <Link to='/menu'>Pet Listing</Link>
+            <Link to='/order/salad'>Donation Campaigns</Link>
         </>
   return (
     <div className="fixed z-10 bg-opacity-80 bg-black text-white w-full">
@@ -20,10 +20,13 @@ const NavBar = () =>  {
       </Navbar.Brand>
       
       <div className="flex md:order-2 gap-3">
-      <Link to="/login">
-        <Button className="bg-pcolor">Login</Button>
-      </Link>
-      <Button className="bg-pcolor">Register</Button>
+        <Link to="/login">
+          <Button className="bg-pcolor">Login</Button>
+        </Link>
+        <Link to="/register">
+        <Button className="bg-pcolor">Register</Button>
+        </Link>
+      
         <Dropdown
           arrowIcon={false}
           inline
@@ -37,10 +40,8 @@ const NavBar = () =>  {
             <span className="block truncate text-sm font-medium">name@flowbite.com</span>
           </Dropdown.Header>
           <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
           <Dropdown.Divider />
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item>Log out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
         

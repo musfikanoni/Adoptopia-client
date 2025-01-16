@@ -1,11 +1,15 @@
 
 import { Button, Label, TextInput } from "flowbite-react";
-import { useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
 const Login = () => {
 
     const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
+
+    const {signIn}  = useContext(AuthContext)
 
     useEffect(() => {
         loadCaptchaEnginge(3);
@@ -17,6 +21,11 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        signIn(email, password)
+        .then(ressult => {
+            const user = ressult.user;
+            console.log(user);
+        })
     }
 
     const handlevalided = () => {
@@ -29,7 +38,9 @@ const Login = () => {
 
     return (
         <div>
-            
+            <Helmet>
+                <title>Adoptopia | Login</title>
+            </Helmet>
             <form onSubmit={handleLogin} className="flex max-w-md flex-col pt-20 gap-4">
                 <div>
                     <div className="mb-2 block">
