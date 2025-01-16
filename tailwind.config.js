@@ -4,7 +4,14 @@ import flowbite from "flowbite-react/tailwind";
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", flowbite.content()],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        "quicksand": ['Quicksand', 'serif'],
+      },
+      colors: {
+        "pcolor" : "#86C305",
+      }
+    },
   },
   plugins: [flowbite.plugin()],
 };

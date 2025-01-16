@@ -3,17 +3,10 @@
 @tailwind utilities;
 
 
-/* quicksand font */
-/* @import url('https://fonts.googleapis.com/css2?family=Inder&family=Poppins:wght@400;500;600;700;800;900&family=Quicksand:wght@300..700&display=swap'); */
+/* google sora font */
+@import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
 
-/* roboto font */
-@import url('https://fonts.googleapis.com/css2?family=Inder&family=Poppins:wght@400;500;600;700;800;900&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
-.roboto {
-  font-family: "Roboto", serif;
+body {
+    font-family: "Quicksand", sans-serif;
 }
 
-/* body {
-  font-family: "Quicksand", serif;
-  font-optical-sizing: auto;
-} */
