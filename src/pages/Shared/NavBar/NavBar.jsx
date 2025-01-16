@@ -20,7 +20,9 @@ const NavBar = () =>  {
       </Navbar.Brand>
       
       <div className="flex md:order-2 gap-3">
-      <Button className="bg-pcolor">Login</Button>
+      <Link to="/login">
+        <Button className="bg-pcolor">Login</Button>
+      </Link>
       <Button className="bg-pcolor">Register</Button>
         <Dropdown
           arrowIcon={false}

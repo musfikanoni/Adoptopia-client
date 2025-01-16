@@ -10,13 +10,13 @@ const Banner = () => {
     return (
         <div>
             <Carousel  autoPlay interval={3000} infiniteLoop showThumbs={false} showStatus={false}>
-                <div className="h-[100vh]">
+                <div className="md:h-[100vh]">
                     <img src={img1} />
                 </div>
-                <div className="h-[100vh]">
+                <div className="md:h-[100vh]">
                     <img src={img2} />
                 </div>
-                <div className="h-[100vh]">
+                <div className="md:h-[100vh]">
                     <img src={img3} /> 
                 </div>
             </Carousel>
