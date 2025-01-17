@@ -5,12 +5,12 @@ import { Link } from "react-router-dom";
 
 const NavBar = () =>  {
     const navLinks = <>
-            <Link to='/'>Home</Link>
-            <Link to='/menu'>Pet Listing</Link>
-            <Link to='/order/salad'>Donation Campaigns</Link>
+            <Link className="text-[16px]" to='/'>Home</Link>
+            <Link className="text-[16px]" to='/menu'>Pet Listing</Link>
+            <Link className="text-[16px]" to='/order/salad'>Donation Campaigns</Link>
         </>
   return (
-    <div className="fixed z-10 bg-opacity-80 bg-black text-white w-full">
+    <div className="fixed z-10 backdrop-blur-lg top-0 bg-opacity-70 bg-black text-white w-full">
     <Navbar className="max-w-screen-xl mx-auto bg-transparent">
         
       <Navbar.Brand>
@@ -21,10 +21,10 @@ const NavBar = () =>  {
       
       <div className="flex md:order-2 gap-3">
         <Link to="/login">
-          <Button className="bg-pcolor">Login</Button>
+          <Button className="bg-pcolor text-xl font-bold tracking-wider">Login</Button>
         </Link>
         <Link to="/register">
-        <Button className="bg-pcolor">Register</Button>
+        <Button className="bg-pcolor text-xl font-bold tracking-wider">Register</Button>
         </Link>
       
         <Dropdown

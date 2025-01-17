@@ -5,9 +5,6 @@ export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}", flowbite.content()],
   theme: {
     extend: {
-      fontFamily: {
-        "quicksand": ['Quicksand', 'serif'],
-      },
       colors: {
         "pcolor" : "#86C305",
       }

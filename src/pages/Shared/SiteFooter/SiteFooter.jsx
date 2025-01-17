@@ -5,7 +5,7 @@ import footerLogo from '../../../assets/site-logo.png';
 const SiteFooter = () => {
     return (
         <div>
-            <Footer container className="bg-black opacity-90 rounded-none ">
+            <Footer container className=" rounded-none bg-black">
             <div className="w-full ">
                 <div className="grid max-w-screen-xl mx-auto justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
                     <div className="w-6/12 lg:ml-4">
