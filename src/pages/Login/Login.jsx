@@ -4,6 +4,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 const Login = () => {
 
     const captchaRef = useRef(null);
@@ -24,8 +25,28 @@ const Login = () => {
         signIn(email, password)
         .then(ressult => {
             const user = ressult.user;
-            console.log(user);
-        })
+            console.log(user)
+                Swal.fire({
+                    title: "User Login Successful",
+                    icon: "success",
+                    showClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                      `
+                    },
+                    hideClass: {
+                      popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                      `
+                    }
+                  }); 
+            }
+
+        )
     }
 
     const handlevalided = () => {

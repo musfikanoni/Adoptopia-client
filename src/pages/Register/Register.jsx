@@ -1,14 +1,21 @@
 import { Button, Label, TextInput } from "flowbite-react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Register = () => {
-
+    const {createUser} = useContext(AuthContext);
     const {register, handleSubmit,
     formState: { errors }} = useForm();
 
     const onSubmit = data => {
         console.log(data)
+        createUser(data.email, data.password)
+        .then(result => {
+            const loggedUser = result.user;
+            console.log(loggedUser);
+        })
     }
 
     return (
