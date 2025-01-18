@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Register = () => {
     const {createUser} = useContext(AuthContext);
@@ -64,6 +65,7 @@ const Register = () => {
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                 <Button type="submit">Register</Button>
+                <p>Have you Already a account? <Link to='/login'>login here</Link> </p>
             </form>
 
         </div>

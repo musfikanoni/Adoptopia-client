@@ -1,13 +1,14 @@
 
 import { Button, Label, TextInput } from "flowbite-react";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const Login = () => {
 
-    const captchaRef = useRef(null);
+    // const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
 
     const {signIn}  = useContext(AuthContext)
@@ -49,10 +50,13 @@ const Login = () => {
         )
     }
 
-    const handlevalided = () => {
-        const user_captcha_value = captchaRef.current.value;
+    const handlevalided = (e) => {
+        const user_captcha_value = e.target.value;
         if(validateCaptcha(user_captcha_value)) {
             setDisabled(false);
+        }
+        else{
+            setDisabled(true);
         }
     }
 
@@ -81,14 +85,15 @@ const Login = () => {
                             <LoadCanvasTemplate />
                         </Label>
                     </div>
-                    <TextInput ref={captchaRef} type="text" placeholder="Type the captcha above" />
-                    <Button onClick={handlevalided} className="w-full mt-5">valided</Button>
+                    <TextInput onBlur={handlevalided} type="text" placeholder="Type the captcha above" />
+                    {/* <Button  className="w-full mt-5">valided</Button> */}
                 </div>
                 {/* <div className="flex items-center gap-2">
                     <Checkbox id="remember" />
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                 <Button type="submit" disabled={disabled}>Login</Button>
+                <p>Are you new here? <Link to='/register'>Create an account</Link> </p>
             </form>
 
         </div>
