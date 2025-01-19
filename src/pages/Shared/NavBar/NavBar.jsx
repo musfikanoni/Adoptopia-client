@@ -16,7 +16,7 @@ const NavBar = () =>  {
     }
     const navLinks = <>
             <Link className="text-[16px]" to='/'>Home</Link>
-            <Link className="text-[16px]" to='/menu'>Pet Listing</Link>
+            <Link className="text-[16px]" to='/petList'>Pet Listing</Link>
             <Link className="text-[16px]" to='/order/salad'>Donation Campaigns</Link>
         </>
   return (
@@ -34,25 +34,25 @@ const NavBar = () =>  {
             user ? <>
                 <div className="flex gap-5 items-center">
                     <div className="group">
-                        <Link>
+                      
                         {
                             user.photoURL ? (
                                 <>
-                                  <Dropdown arrowIcon={false} inline
+                                  <Dropdown arrowIcon={true} inline
                                 label={<Avatar alt="" className="h-12" img={user.photoURL} rounded />
                                 }>
                                   <Dropdown.Header>
                                       <span className="block text-sm">{user.displayName || 'User'}</span>
                                       <span className="block truncate text-sm font-medium">name@flowbite.com</span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item>Dashboard</Dropdown.Item>
+                                    <Dropdown.Item><Link>Dashboard</Link></Dropdown.Item>
                                     <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
                                   </Dropdown>
                                 <Navbar.Toggle />
                                 </>
                             ) : (
                               <>
-                                <Dropdown arrowIcon={false} inline
+                                <Dropdown arrowIcon={true} inline
                                   label={<Avatar alt="" className="h-12" img={userIcon} rounded />
                                   }>
                                     <Dropdown.Header>
@@ -67,12 +67,9 @@ const NavBar = () =>  {
                                 
                             )
                         }
-                        </Link>
-                        {/* <div className='absolute right-32 mt-2 w-40 bg-white text-gray-600 text-sm rounded-lg p-2 hidden group-hover:block'>
-                            {user.displayName || 'User'}
-                        </div> */}
+
                     </div>
-                    {/* <button className='btn'>Log Out</button> */}
+                 
                 </div>
             </> : <>
               <Link to="/login">
@@ -84,24 +81,6 @@ const NavBar = () =>  {
             </>
         }
 
-      
-        {/* <Dropdown
-          arrowIcon={true}
-          inline
-          label={
-            
-            <Avatar alt="" className="h-12" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">Bonnie Green</span>
-            <span className="block truncate text-sm font-medium">name@flowbite.com</span>
-          </Dropdown.Header>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Log out</Dropdown.Item>
-        </Dropdown>
-        <Navbar.Toggle />
-         */}
       </div>
       <Navbar.Collapse>
           {navLinks}

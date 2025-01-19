@@ -1,11 +1,13 @@
 import { Button, Label, TextInput } from "flowbite-react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
+    const [showPassword, setShowPassword] = useState(false);
     const {createUser} = useContext(AuthContext);
     const {register, handleSubmit,
     formState: { errors }} = useForm();
@@ -46,19 +48,26 @@ const Register = () => {
                     <TextInput {...register("photoURL", { required: true })} id="text" type="text" placeholder="Photo URL" />
                     {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
                 </div>
-                <div>
+                <div className="relative">
                     <div className="mb-2 block">
-                    <Label htmlFor="password1" value="Your password" />
+                        <Label htmlFor="password1" value="Your password" />
                     </div>
                     <TextInput {...register("password", { required: true, 
                         minLength: 6, 
                         maxLength: 20,
                         pattern: /(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.*[a-z])/ 
-                        })} id="password1" type="password" placeholder="Password" />
+                        })} id="password1" type={showPassword? 'text' : 'password'} placeholder="Password" />
                     {errors.password?.type === 'required' && <span className="text-red-600">Password is required</span>}
                     {errors.password?.type === 'minLength' && <span className="text-red-600">Password must be 6 characters</span>}
                     {errors.password?.type === 'maxLength' && <span className="text-red-600">Password must be less 20 characters</span>}
                     {errors.password?.type === 'pattern' && <span className="text-red-600">Password must one uppercase, one lowercase, one number, one special character</span>}
+                    <button className="btn absolute right-4 top-11"
+                    onClick={() => setShowPassword(!showPassword)}>
+                        {
+                            showPassword ? <FaEye /> :<FaEyeSlash /> 
+                        }
+                        
+                    </button>
                 </div>
                 {/* <div className="flex items-center gap-2">
                     <Checkbox id="remember" />

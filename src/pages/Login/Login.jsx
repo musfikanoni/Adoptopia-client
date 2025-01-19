@@ -6,15 +6,16 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 const Login = () => {
-
+    const [showPassword, setShowPassword] = useState(false);
     // const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
 
     const {signIn}  = useContext(AuthContext)
 
     useEffect(() => {
-        loadCaptchaEnginge(3);
+        loadCaptchaEnginge(6);
     }, [])
 
     const handleLogin = e => {
@@ -66,21 +67,30 @@ const Login = () => {
             <Helmet>
                 <title>Adoptopia | Login</title>
             </Helmet>
-            <form onSubmit={handleLogin} className="flex max-w-md flex-col pt-20 gap-4">
+            <form onSubmit={handleLogin} className="flex max-w-md flex-col pt-20 gap-4 border-2 p-5 bg-slate-400">
                 <div>
                     <div className="mb-2 block">
                     <Label htmlFor="email1" value="Your email" />
                     </div>
-                    <TextInput name="email" id="email1" type="email" placeholder="name@flowbite.com" required />
+                    <TextInput name="email" id="email1" type="email" placeholder="Email" required />
                 </div>
-                <div>
+                <div className="relative">
                     <div className="mb-2 block">
                     <Label htmlFor="password1" value="Your password" />
                     </div>
-                    <TextInput name="password" id="password1" type="password" required />
+                    <TextInput name="password" id="password1" type={showPassword ? 'text' : 'password'} placeholder="Password" required />
+                    <button className="btn">
+                        <button className="btn absolute right-4 top-11"
+                            onClick={() => setShowPassword(!showPassword)}>
+                                {
+                                    showPassword ? <FaEye /> :<FaEyeSlash /> 
+                                }
+                                
+                            </button>
+                        </button>
                 </div>
                 <div>
-                    <div className="mb-2 block">
+                    <div className="mb-2 block" style={{backgroundColor: '#f0f0f0'}}>
                         <Label>
                             <LoadCanvasTemplate />
                         </Label>
