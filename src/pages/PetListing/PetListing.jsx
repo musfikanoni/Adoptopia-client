@@ -40,7 +40,7 @@ const PetListing = () => {
                     </div>
                     <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-y-9">
                     {
-                        petList.map(pet => <PetListCard key={pet._id} pet={pet}></PetListCard>)
+                        petList.map(pets => <PetListCard key={pets._id} pets={pets}></PetListCard>)
                     }
                 </div>
             </div>

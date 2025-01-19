@@ -1,8 +1,9 @@
-import { Button, Card } from "flowbite-react";
+import { Card } from "flowbite-react";
+import { Link } from "react-router-dom";
 // import usePetList from "../../../hooks/usePetList";
 
-const PetListCard = ({pet}) => {
-    const {_id, pet_name, pet_image, pet_age, pet_location, order_date} = pet;
+const PetListCard = ({pets}) => {
+    const {_id, pet_name, pet_image, pet_age, pet_location, order_date} = pets;
     // const[petList] = usePetList();
     return (
         <div>
@@ -17,7 +18,9 @@ const PetListCard = ({pet}) => {
                 <p className="font-normal text-gray-700 dark:text-gray-400">Pet Age: {pet_age}</p>
                 <p className="font-normal text-gray-700 dark:text-gray-400 -mt-3">Pet Loacation: {pet_location}</p>
                 <div>
-                    <button className="btn text-md rounded-lg text-white px-4 py-2 font-bold bg-pcolor">View Details</button>
+                    <Link to={`/petList/${_id}`}>
+                        <button className="btn text-md rounded-lg text-white px-4 py-2 font-bold bg-pcolor">View Details</button>
+                    </Link>
                 </div>
             </Card>
         </div>
