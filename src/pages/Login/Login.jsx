@@ -11,7 +11,6 @@ const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     // const captchaRef = useRef(null);
     const [disabled, setDisabled] = useState(true);
-
     const {signIn}  = useContext(AuthContext)
 
     useEffect(() => {
@@ -90,9 +89,9 @@ const Login = () => {
                         </button>
                 </div>
                 <div>
-                    <div className="mb-2 block" style={{backgroundColor: '#f0f0f0'}}>
+                    <div className="mb-2 block">
                         <Label>
-                            <LoadCanvasTemplate />
+                            <LoadCanvasTemplate theme="dark" />
                         </Label>
                     </div>
                     <TextInput onBlur={handlevalided} type="text" placeholder="Type the captcha above" />
