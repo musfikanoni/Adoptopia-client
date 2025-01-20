@@ -5,7 +5,11 @@ import Cover from "../Cover/Cover";
 const PetDetails = () => {
     const pet = useLoaderData();
     const {pet_name, pet_image, pet_age, pet_location, order_date, 
-Description, pet_category, gender} = pet;
+    Description, pet_category, gender} = pet;
+    const handleAdopte = (pet) => {
+        console.log(pet)
+    }
+
     return (
         <div className="pb-[450px] bg-lime-100">   
             <Helmet>
@@ -31,9 +35,9 @@ Description, pet_category, gender} = pet;
                             <p>Category: {pet_category}</p>
                             <p>Pet Gender: {gender}</p>
                             <div className=" flex justify-end">
-                            <button className="btn bg-pcolor px-6 py-2 mt-5 text-xl font-bold text-white rounded-lg">Adopt Now</button>
-                            </div>
-                            
+                                <button onClick={() => handleAdopte(pet)}
+                                className="btn bg-pcolor px-6 py-2 mt-5 text-xl font-bold text-white rounded-lg">Adopt Now</button>
+                            </div>   
                         </div>
                     </div>
                 </div>

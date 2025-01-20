@@ -30,56 +30,55 @@ const NavBar = () =>  {
       </Navbar.Brand>
       
       <div className="flex md:order-2 gap-3">
-      {
-            user ? <>
-                <div className="flex gap-5 items-center">
-                    <div className="group">
-                      
-                        {
-                            user.photoURL ? (
-                                <>
-                                  <Dropdown arrowIcon={true} inline
-                                label={<Avatar alt="" className="h-12" img={user.photoURL} rounded />
-                                }>
-                                  <Dropdown.Header>
-                                      <span className="block text-sm">{user.displayName || 'User'}</span>
-                                      <span className="block truncate text-sm font-medium">name@flowbite.com</span>
-                                    </Dropdown.Header>
-                                    <Dropdown.Item><Link>Dashboard</Link></Dropdown.Item>
-                                    <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
-                                  </Dropdown>
-                                <Navbar.Toggle />
-                                </>
-                            ) : (
+        {
+          user ? <>
+              <div className="flex gap-5 items-center">
+                  <div className="group">
+                      {
+                          user.photoURL ? (
                               <>
                                 <Dropdown arrowIcon={true} inline
-                                  label={<Avatar alt="" className="h-12" img={userIcon} rounded />
-                                  }>
-                                    <Dropdown.Header>
-                                      <span className="block text-sm">{user.displayName || 'User'}</span>
-                                      <span className="block truncate text-sm font-medium">name@flowbite.com</span>
-                                    </Dropdown.Header>
-                                    <Dropdown.Item>Dashboard</Dropdown.Item>
-                                    <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
+                              label={<Avatar alt="" className="h-12" img={user?.photoURL} rounded />
+                              }>
+                                <Dropdown.Header>
+                                    <span className="block text-sm">{user?.displayName || 'User'}</span>
+                                    <span className="block truncate text-sm font-medium">{user?.email}</span>
+                                  </Dropdown.Header>
+                                  <Dropdown.Item><Link to="/dashboard/addPet">Dashboard</Link></Dropdown.Item>
+                                  <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
                                 </Dropdown>
-                                <Navbar.Toggle />
+                              <Navbar.Toggle />
                               </>
-                                
-                            )
-                        }
+                          ) : (
+                            <>
+                              <Dropdown arrowIcon={true} inline
+                                label={<Avatar alt="" className="h-12" img={userIcon} rounded />
+                                }>
+                                  <Dropdown.Header>
+                                    <span className="block text-sm">{user?.displayName || 'User'}</span>
+                                    <span className="block truncate text-sm font-medium">{user?.email}</span>
+                                  </Dropdown.Header>
+                                  <Dropdown.Item><Link to="/dashboard/addPet">Dashboard</Link></Dropdown.Item>
+                                  <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
+                              </Dropdown>
+                              <Navbar.Toggle />
+                            </>
+                              
+                          )
+                      }
 
-                    </div>
-                 
-                </div>
-            </> : <>
-              <Link to="/login">
-                <Button className="bg-pcolor text-xl font-bold tracking-wider">Login</Button>
-                </Link>
-              <Link to="/register">
-                <Button className="bg-pcolor text-xl font-bold tracking-wider">Register</Button>
+                  </div>
+                
+              </div>
+          </> : <>
+            <Link to="/login">
+              <Button className="bg-pcolor text-xl font-bold tracking-wider">Login</Button>
               </Link>
-            </>
-        }
+            <Link to="/register">
+              <Button className="bg-pcolor text-xl font-bold tracking-wider">Register</Button>
+            </Link>
+          </>
+      }
 
       </div>
       <Navbar.Collapse>

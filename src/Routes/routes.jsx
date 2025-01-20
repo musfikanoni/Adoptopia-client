@@ -10,6 +10,7 @@ import PetDetails from "../pages/Shared/PetDetails/PetDetails";
 import Dashboard from "../Layout/Dashboard";
 import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
 import DonationDetails from "../pages/Shared/DonationDetails/DonationDetails";
+import AddPet from "../pages/Dashboard/AddPet/AddPet";
 
 
  export const router = createBrowserRouter([
@@ -54,8 +55,8 @@ import DonationDetails from "../pages/Shared/DonationDetails/DonationDetails";
       element: <Dashboard></Dashboard>,
       children: [
         {
-          path: 'pets',
-          // element: 
+          path: 'addPet',
+          element: <AddPet></AddPet>
         }
       ]
     }

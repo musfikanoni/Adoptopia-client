@@ -5,11 +5,12 @@ import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = () => {
     const [showPassword, setShowPassword] = useState(false);
-    const {createUser} = useContext(AuthContext);
-    const {register, handleSubmit,
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const {register, handleSubmit, reset,
     formState: { errors }} = useForm();
 
     const onSubmit = data => {
@@ -18,6 +19,31 @@ const Register = () => {
         .then(result => {
             const loggedUser = result.user;
             console.log(loggedUser);
+            updateUserProfile(data.name, data.photoURL)
+            .then(() => {
+                console.log('profile updated');
+                reset();
+                Swal.fire({
+                    title: "Sign Up Successful",
+                    icon: "success",
+                    showClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeInUp
+                        animate__faster
+                        `
+                    },
+                    hideClass: {
+                        popup: `
+                        animate__animated
+                        animate__fadeOutDown
+                        animate__faster
+                        `
+                    }
+                });
+
+            })
+            .catch(error => console.log(error));
         })
     }
 
@@ -31,7 +57,7 @@ const Register = () => {
                     <div className="mb-2 block">
                     <Label htmlFor="name" value="Your Name" />
                     </div>
-                    <TextInput {...register("name", { required: true })} id="name" type="name" placeholder="Your Name" />
+                    <TextInput {...register("name", { required: true })} id="name" type="text" placeholder="Your Name" />
                     {errors.name && <span className="text-red-600">Name is required</span>}
                 </div>
                 <div>
@@ -43,9 +69,9 @@ const Register = () => {
                 </div>
                 <div>
                     <div className="mb-2 block">
-                    <Label htmlFor="text" value="Your Photo URL" />
+                    <Label htmlFor="photo" value="Your Photo URL" />
                     </div>
-                    <TextInput {...register("photoURL", { required: true })} id="text" type="text" placeholder="Photo URL" />
+                    <TextInput {...register("photoURL", { required: true })} id="photo" type="photo" placeholder="Photo URL" />
                     {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
                 </div>
                 <div className="relative">
