@@ -7,12 +7,12 @@ const PetDetails = () => {
     const {pet_name, pet_image, pet_age, pet_location, order_date, 
 Description, pet_category, gender} = pet;
     return (
-        <div>   
+        <div className="pb-[450px] bg-lime-100">   
             <Helmet>
                 <title>Adoptopia | Pet Details</title>
             </Helmet> 
-            <Cover></Cover>
-            <div className="max-w-screen-lg mx-auto">
+            <Cover subHeading={'Pet Details'} heading={"Let's Explore our pet details"}></Cover>
+            <div className=" lg:mx-64 -mt-32 absolute">
             <div className="bg-white border border-pcolor my-7 rounded-lg">
                 <div className="lg:flex md:flex flex-none lg:p-8 md:p-8 p-5">
                     <div className="">
