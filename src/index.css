@@ -22,3 +22,6 @@ body {
     height: 50px;
     object-fit: fill;
 }
+.details-banner {
+    background-image: url('./assets/bg-banner/pet-details.jpg');
+}
