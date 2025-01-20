@@ -1,9 +1,6 @@
 
 import { Banner } from "flowbite-react";
 import { RxDividerHorizontal, RxDotFilled } from "react-icons/rx";
-import SectionTitle from "../../../components/SectionTitle/SectionTitle";
-// import { FaBookOpen } from "react-icons/fa";
-// import { HiArrowRight, HiX } from "react-icons/hi";
 const Cover = ({subHeading, heading}) => {
 
 

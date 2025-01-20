@@ -42,7 +42,7 @@ const PetListing = () => {
                     {
                         petList.map(pets => <PetListCard key={pets._id} pets={pets}></PetListCard>)
                     }
-                </div>
+                    </div>
             </div>
         );
 };

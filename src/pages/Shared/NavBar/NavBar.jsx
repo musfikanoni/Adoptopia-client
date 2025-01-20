@@ -17,7 +17,7 @@ const NavBar = () =>  {
     const navLinks = <>
             <Link className="text-[16px]" to='/'>Home</Link>
             <Link className="text-[16px]" to='/petList'>Pet Listing</Link>
-            <Link className="text-[16px]" to='/order/salad'>Donation Campaigns</Link>
+            <Link className="text-[16px]" to='/donationCampaign'>Donation Campaigns</Link>
         </>
   return (
     <div className="fixed z-10 backdrop-blur-lg top-0 bg-opacity-70 bg-black text-white w-full">
