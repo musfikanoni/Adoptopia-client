@@ -6,8 +6,10 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState(false);
     const {createUser, updateUserProfile} = useContext(AuthContext);
     const {register, handleSubmit, reset,
@@ -21,26 +23,35 @@ const Register = () => {
             console.log(loggedUser);
             updateUserProfile(data.name, data.photoURL)
             .then(() => {
-                console.log('profile updated');
-                reset();
-                Swal.fire({
-                    title: "Sign Up Successful",
-                    icon: "success",
-                    showClass: {
-                        popup: `
-                        animate__animated
-                        animate__fadeInUp
-                        animate__faster
-                        `
-                    },
-                    hideClass: {
-                        popup: `
-                        animate__animated
-                        animate__fadeOutDown
-                        animate__faster
-                        `
+                const userInfo = {
+                    name: data.name,
+                    email: data.email
+                }
+                axiosPublic.post('/users', userInfo)
+                .then(res =>{
+                    if(res.data.insertedId){
+                        console.log('user added')
+                        reset();
+                        Swal.fire({
+                            title: "Sign Up Successful",
+                            icon: "success",
+                            showClass: {
+                                popup: `
+                                animate__animated
+                                animate__fadeInUp
+                                animate__faster
+                                `
+                            },
+                            hideClass: {
+                                popup: `
+                                animate__animated
+                                animate__fadeOutDown
+                                animate__faster
+                                `
+                            }
+                        });
                     }
-                });
+                })
 
             })
             .catch(error => console.log(error));
@@ -100,6 +111,7 @@ const Register = () => {
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                 <Button type="submit">Register</Button>
+                
                 <p>Have you Already a account? <Link to='/login'>login here</Link> </p>
             </form>
 
