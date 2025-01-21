@@ -6,12 +6,10 @@ import Swal from "sweetalert2";
 import { Label, Modal, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import axios from "axios";
-// import usePetList from "../../../hooks/usePetList";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const PetDetails = () => {
     const [openModal, setOpenModal] = useState(false);
-    // const {pet_id} = usePetList();
 
         const {register, handleSubmit, 
         formState: { errors }} = useForm();
@@ -28,6 +26,7 @@ const PetDetails = () => {
             }
           });
 
+    const axiosSecure = useAxiosSecure();
     const pet = useLoaderData();
     const {_id, pet_id, pet_name, pet_image, pet_age, pet_location, order_date, Description, pet_category, gender } = pet;
     const { user } = useAuth();
@@ -35,7 +34,6 @@ const PetDetails = () => {
     const location = useLocation();
 
     const onSubmit = (data) => {
-        console.log(data);
         const adoptionData = {
             ...data,
             petId: _id,
@@ -51,13 +49,15 @@ const PetDetails = () => {
             user_email: user?.email,
             user_name: user?.displayName
         }
-        axios.post('http://localhost:5000/adoptionRequest', adoptionData)
+        axiosSecure.post('/adoptionRequest', adoptionData)
         .then(res => {
             console.log(res.data);
-            Toast.fire({
-                icon: "success",
-                title: "Pet Adoption Successful"
-              });
+            if(res.data.insertedId){
+                Toast.fire({
+                    icon: "success",
+                    title: `${pet_name} Adoption Successful`
+                  });
+            }
         })
     }
 
