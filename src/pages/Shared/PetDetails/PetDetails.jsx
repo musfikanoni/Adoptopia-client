@@ -11,7 +11,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const PetDetails = () => {
     const [openModal, setOpenModal] = useState(false);
 
-    const {register, handleSubmit, 
+    const {register, handleSubmit, reset,
     formState: { errors }} = useForm();
 
     const Toast = Swal.mixin({
@@ -46,16 +46,17 @@ const PetDetails = () => {
             Description, 
             pet_category, 
             gender,
-            user_email: user?.email,
-            user_name: user?.displayName
+            email: user?.email,
+            name: user?.displayName
         }
         axiosSecure.post('/adoptionRequest', adoptionData)
         .then(res => {
             console.log(res.data);
+            reset();
             if(res.data.insertedId){
                 Toast.fire({
                     icon: "success",
-                    title: `${pet_name} Adoption Successful`
+                    title: `${pet_name} Adoption request Successful`
                   });
             }
         })
@@ -152,6 +153,13 @@ const PetDetails = () => {
                                 </div>
                                 <TextInput id="number" {...register("phoneNumber", { required: true })} type="number" placeholder="phone number" />
                                 {errors.phoneNumber && <span className="text-red-600">Phone number is required</span>}
+                            </div>
+                            <div>
+                                <div className="mb-2 block">
+                                    <Label htmlFor="address" value="Your address" />
+                                </div>
+                                <TextInput id="address" {...register("address", { required: true })} type="text" placeholder="Adress" />
+                                {errors.address && <span className="text-red-600">Address is required</span>}
                             </div>
                             <div className="w-full flex justify-center pt-3 gap-4">
                                 <button className="bg-pcolor hover:bg-lime-500 px-7 py-2.5 text-md font-bold text-white rounded-3xl">Submit</button>

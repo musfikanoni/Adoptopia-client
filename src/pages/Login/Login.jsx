@@ -96,7 +96,7 @@ const Login = () => {
                 <div>
                     <div className="mb-2 block">
                         <Label>
-                            <LoadCanvasTemplate theme="dark" />
+                            <LoadCanvasTemplate />
                         </Label>
                     </div>
                     <TextInput onBlur={handlevalided} type="text" placeholder="Type the captcha above" />

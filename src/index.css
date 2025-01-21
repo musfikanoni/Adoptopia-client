@@ -28,3 +28,8 @@ body {
 .donation-banner {
     background-image: url('./assets/bg-banner/donation-details.jpg');
 }
+
+.css-13cymwt-control {
+    border-radius: 8px !important; 
+    padding: 2px 0px !important;
+}
