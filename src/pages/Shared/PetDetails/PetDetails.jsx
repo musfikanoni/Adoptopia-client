@@ -11,20 +11,20 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const PetDetails = () => {
     const [openModal, setOpenModal] = useState(false);
 
-        const {register, handleSubmit, 
-        formState: { errors }} = useForm();
+    const {register, handleSubmit, 
+    formState: { errors }} = useForm();
 
-        const Toast = Swal.mixin({
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            timer: 3000,
-            timerProgressBar: true,
-            didOpen: (toast) => {
-              toast.onmouseenter = Swal.stopTimer;
-              toast.onmouseleave = Swal.resumeTimer;
-            }
-          });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+        });
 
     const axiosSecure = useAxiosSecure();
     const pet = useLoaderData();
