@@ -11,6 +11,7 @@ import Dashboard from "../Layout/Dashboard";
 import DonationCampaigns from "../pages/DonationCampaigns/DonationCampaigns";
 import DonationDetails from "../pages/Shared/DonationDetails/DonationDetails";
 import AddPet from "../pages/Dashboard/AddPet/AddPet";
+import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
 
 
  export const router = createBrowserRouter([
@@ -57,6 +58,10 @@ import AddPet from "../pages/Dashboard/AddPet/AddPet";
         {
           path: 'addPet',
           element: <AddPet></AddPet>
+        },
+        {
+          path: 'adoptionRequest',
+          element: <AdoptionRequest></AdoptionRequest>
         }
       ]
     }
