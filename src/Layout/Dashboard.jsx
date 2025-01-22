@@ -7,11 +7,12 @@ import { PiMoney } from "react-icons/pi";
 import { RiFunctionAddLine } from "react-icons/ri";
 import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../hooks/useAdmin";
 // import useAdoptionReq from "../hooks/useAdoptionReq";
 
 const Dashboard = () => {
     //TODO
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
 
     return (
         <div className="flex">
