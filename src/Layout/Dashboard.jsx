@@ -22,7 +22,7 @@ const Dashboard = () => {
                         isAdmin ? <>
                             <li className="flex items-center gap-3">
                                 <FaUsers></FaUsers>
-                                <NavLink>Users</NavLink>
+                                <NavLink to="/dashboard/users">Users</NavLink>
                             </li>
                             <li className="flex items-center gap-3">
                                 <LuCat></LuCat>

@@ -13,6 +13,7 @@ import DonationDetails from "../pages/Shared/DonationDetails/DonationDetails";
 import AddPet from "../pages/Dashboard/AddPet/AddPet";
 import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
 import PrivateRoute from "./PrivateRoute";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 
  export const router = createBrowserRouter([
@@ -63,6 +64,10 @@ import PrivateRoute from "./PrivateRoute";
         {
           path: 'adoptionRequest',
           element: <AdoptionRequest></AdoptionRequest>
+        },
+        {
+          path: 'users',
+          element: <AllUsers></AllUsers>
         }
       ]
     }
