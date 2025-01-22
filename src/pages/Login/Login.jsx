@@ -7,6 +7,7 @@ import { Helmet } from "react-helmet";
 import Swal from "sweetalert2";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import SocialLogin from "../../components/SectionTitle/SocialLogin/SocialLogin";
 const Login = () => {
     const [showPassword, setShowPassword] = useState(false);
     // const captchaRef = useRef(null);
@@ -107,7 +108,7 @@ const Login = () => {
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                 <Button type="submit" disabled={disabled}>Login</Button>
-                
+                <SocialLogin></SocialLogin>
                 <p>Are you new here? <Link to='/register'>Create an account</Link> </p>
             </form>
 

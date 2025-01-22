@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import SocialLogin from "../../components/SectionTitle/SocialLogin/SocialLogin";
 
 const Register = () => {
     const axiosPublic = useAxiosPublic();
@@ -111,7 +112,7 @@ const Register = () => {
                     <Label htmlFor="remember">Remember me</Label>
                 </div> */}
                 <Button type="submit">Register</Button>
-                
+                <SocialLogin></SocialLogin>
                 <p>Have you Already a account? <Link to='/login'>login here</Link> </p>
             </form>
 
