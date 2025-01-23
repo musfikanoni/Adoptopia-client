@@ -14,6 +14,7 @@ import AddPet from "../pages/Dashboard/AddPet/AddPet";
 import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest";
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
 
 
  export const router = createBrowserRouter([
@@ -67,7 +68,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
         },
         {
           path: 'users',
-          element: <AllUsers></AllUsers>
+          element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
         }
       ]
     }

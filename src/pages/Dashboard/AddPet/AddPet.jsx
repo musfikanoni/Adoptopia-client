@@ -1,107 +1,118 @@
-import { useState } from "react";
-import { Button, Label, Textarea, TextInput } from "flowbite-react";
-import Select from 'react-select';
+// import { useState } from "react";
+// import { Button, FloatingLabel, Label, Textarea, TextInput } from "flowbite-react";
+// import Select from 'react-select';
+import { FileInput, FloatingLabel } from "flowbite-react";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import { useForm } from "react-hook-form";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const FileUpload = () => {
-    const [file, setFile] = useState(null);
+    const { register, handleSubmit, reset } = useForm()
+    const axiosPublic = useAxiosPublic();
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-    };
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+        if(res.data.success){
+            const petList = {
+                pet_image: res.data.data.display_url,
+                pet_name: data.name,
+                pet_age: parseFloat(data.age),
+                pet_category: data.category,
+                pet_location: data.location,
+                shortDescription: data.shortDescription,
+                longDescription: data.longDescription
 
-    const handleUpload = () => {
-        if (file) {
-            console.log(file)
-        } else {
-            console.log("No file selected");
+            }
+            const petRes = await axiosPublic.post('/petList', petList)
+            console.log(petRes);
+            if(petRes.data.insertedId){
+                reset();
+                Swal.fire({
+                    title: "Your pet added successfully!",
+                    icon: "success",
+                    draggable: true
+                  });
+            }
         }
-    };
-
-    const options = [
-        { value: 'cat', label: 'Cat' },
-        { value: 'rabbit', label: 'Rabbit' },
-        { value: 'bird', label: 'Bird' },
-        { value: 'dog', label: 'Dog' },
-        { value: 'fish', label: 'Fish' },
-      ];
-      
-      
-        const [selectedOption, setSelectedOption] = useState(null);
+        console.log(res.data)
+    }
 
     return (
-        <div className="max-w-2xl mx-auto p-5 border rounded-lg">
-
-
-            <form className="flex max-w-2xl flex-col gap-4">
-
-            <label htmlFor="fileInput" className="block">
-                Pet Image
-            </label>
-            <div className="flex items-center border rounded-lg overflow-hidden">
-                {/* Hidden File Input */}
-                <input
-                    id="fileInput"
-                    type="file"
-                    className="hidden"
-                    onChange={handleFileChange}
-                />
-                {/* Custom File Input Button */}
-                <label
-                    htmlFor="fileInput"
-                    className="bg-lime-500 text-white px-4 py-2 cursor-pointer"
-                >
-                    Choose File
-                </label>
-                {/* Display File Name */}
-                <span className="flex-1 px-3 text-gray-700">
-                    {file ? file.name : "No file chosen"}
-                </span>
-            </div>
-            <button
-                onClick={handleUpload}
-                className="mt-4 w-full bg-teal-600 text-white py-2 rounded-lg hover:bg-teal-700"
-            >
-                Upload
-            </button>
+        <div>
+            <SectionTitle subHeading={'Add a Pet'}
+            heading={'Add a new pet for adoption'}
+            ></SectionTitle>
 
             <div>
-                <div className="mb-2 block">
-                <Label htmlFor="name" value="Pet Name" />
-                </div>
-                <TextInput id="name" type="text" placeholder="Pet name" required />
-            </div>
-            <div>
-                <div className="mb-2 block">
-                <Label htmlFor="petAge" value="Pet Age" />
-                </div>
-                <TextInput id="petAge" type="text" placeholder="Pet age" required />
-            </div>
+                <form onSubmit={handleSubmit(onSubmit)}>
+                    {/* pet image  */}
 
-            <div className="App">
-            <div className="mb-2 block">
-                <Label htmlFor="petAge" value="Pet Category" />
-                </div>
-            <Select 
-                defaultValue={selectedOption}
-                onChange={setSelectedOption}
-                isSearchable={false}
-                options={options}
-            />
-            </div>
+                    <FileInput id="file" {...register("image", { required: true })} />
 
-            <div>
-                <div className="mb-2 block">
-                <Label htmlFor="short" value="Short description" />
-                </div>
-                <TextInput id="short" type="text" placeholder="Pet short description" required />
+                    <div className="flex">
+                        <FloatingLabel label="Name" {...register("name", { required: true })}
+                        className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
+                        variant="outlined"  />
+                        {/* {errors.name && <span className="text-red-600">Name is required</span>} */}
+
+                        <FloatingLabel label="Age" {...register("age", { required: true })}
+                        className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
+                        variant="outlined"  />
+                    {/* {errors.age && <span className="text-red-600">Name is required</span>} */}
+
+                    </div>
+                    <div>
+                        {/* <input {...register("name")} /> */}
+                        <select defaultValue="default" {...register("category", { required: true })}
+                        className="select select-bordered w-full max-w-xs">
+                            <option disabled value="default">Select Category</option>
+                            <option value="cat">Cat</option>
+                            <option value="rabbit">Rabbit</option>
+                            <option value="bird">Bird</option>
+                            <option value="dog">Dog</option>
+                            <option value="fish">Fish</option>
+                        </select>
+                        {/* {errors.category && <span className="text-red-600">Name is required</span>} */}
+                    </div>
+
+                    <FloatingLabel label="Location" type="text" {...register("location", { required: true })}
+                    className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
+                    variant="outlined"  />
+                    {/* {errors.location && <span className="text-red-600">Name is required</span>} */}
+
+                    <FloatingLabel label="Short Description" type="text" {...register("shortDescription", { required: true })} 
+                    className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
+                    variant="outlined"  />
+                    {/* {errors.shortDescriptionn && <span className="text-red-600">Name is required</span>} */}
+
+                    <div className="relative">
+                        <textarea
+                            id="floating_textarea" {...register("longDescription", { required: true })}
+                            className="peer block w-full rounded-lg border-pcolor bg-transparent px-2.5 pt-4 text-sm text-pcolor focus:border-pcolor focus:ring-0 focus:ring-pcolor dark:border-pcolor dark:pcolor dark:focus:border-pcolor dark:focus:ring-pcolor"
+                            placeholder=" "
+                            rows="4"
+                        ></textarea>
+                        {/* {errors.longDescription && <span className="text-red-600">Name is required</span>} */}
+                        <label
+                            htmlFor="floating_textarea"
+                            className="absolute left-2.5 top-1.5 peer-focus:px-3 peer-focus:bg-white z-10 origin-[0] -translate-y-4 scale-75 transform text-sm text-pcolor duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-pcolor dark:text-pcolor dark:peer-focus:text-pcolor"
+                        >
+                            Long Description
+                        </label>
+                    </div>
+
+                    <input className="bg-pcolor w-full py-2" type="submit" />
+                </form>
             </div>
-            <div>
-                <div className="mb-2 block">
-                <Label htmlFor="long" value="Long description" />
-                </div>
-                <Textarea id="long" type="text" placeholder="Pet long description" required />
-            </div>
-            <Button type="submit">Add Pet</Button>
-            </form>
 
         </div>
     );
