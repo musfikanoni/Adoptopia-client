@@ -52,65 +52,72 @@ const FileUpload = () => {
             heading={'Add a new pet for adoption'}
             ></SectionTitle>
 
-            <div>
-                <form onSubmit={handleSubmit(onSubmit)}>
+            <div className="max-w-4xl mx-auto">
+                <form onSubmit={handleSubmit(onSubmit)} className="border-2 border-pcolor rounded-lg p-7">
                     {/* pet image  */}
-
                     <FileInput id="file" {...register("image", { required: true })} />
 
-                    <div className="flex">
-                        <FloatingLabel label="Name" {...register("name", { required: true })}
-                        className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
-                        variant="outlined"  />
-                        {/* {errors.name && <span className="text-red-600">Name is required</span>} */}
-
-                        <FloatingLabel label="Age" {...register("age", { required: true })}
-                        className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
-                        variant="outlined"  />
-                    {/* {errors.age && <span className="text-red-600">Name is required</span>} */}
-
-                    </div>
-                    <div>
-                        {/* <input {...register("name")} /> */}
-                        <select defaultValue="default" {...register("category", { required: true })}
-                        className="select select-bordered w-full max-w-xs">
-                            <option disabled value="default">Select Category</option>
-                            <option value="cat">Cat</option>
-                            <option value="rabbit">Rabbit</option>
-                            <option value="bird">Bird</option>
-                            <option value="dog">Dog</option>
-                            <option value="fish">Fish</option>
-                        </select>
-                        {/* {errors.category && <span className="text-red-600">Name is required</span>} */}
+                    <div className="grid grid-cols-2 gap-5 py-4">
+                        <div className="">
+                            <FloatingLabel label="Name" {...register("name", { required: true })}
+                            className="border-pcolor focus:border-pcolor peer-focus:text-pcolor" 
+                            variant="outlined"  />
+                            {/* {errors.name && <span className="text-red-600">Name is required</span>} */}          
+                        </div>
+                        <div >
+                            <FloatingLabel label="Age" {...register("age", { required: true })}
+                            className="border-pcolor focus:border-pcolor peer-focus:text-pcolor" 
+                            variant="outlined"  />
+                            {/* {errors.age && <span className="text-red-600">Name is required</span>} */}
+                        </div>
                     </div>
 
-                    <FloatingLabel label="Location" type="text" {...register("location", { required: true })}
-                    className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
-                    variant="outlined"  />
-                    {/* {errors.location && <span className="text-red-600">Name is required</span>} */}
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <select defaultValue="default" {...register("category", { required: true })}
+                            className="select select-bordered focus:ring-0 focus:ring-pcolor text-gray-500 w-full max-w-4xl rounded-lg text-sm border-pcolor py-3">
+                                <option disabled value="default">Select Category</option>
+                                <option value="cat">Cat</option>
+                                <option value="rabbit">Rabbit</option>
+                                <option value="bird">Bird</option>
+                                <option value="dog">Dog</option>
+                                <option value="fish">Fish</option>
+                            </select>
+                            {/* {errors.category && <span className="text-red-600">Name is required</span>} */}
+                        </div>
 
-                    <FloatingLabel label="Short Description" type="text" {...register("shortDescription", { required: true })} 
-                    className="border-pcolor focus:border-pcolor text-pcolor peer-focus:text-pcolor" 
-                    variant="outlined"  />
+                        <div>
+                            <FloatingLabel label="Location" type="text" {...register("location", { required: true })}
+                            className="border-pcolor focus:border-pcolor  peer-focus:text-pcolor" 
+                            variant="outlined"  />
+                            {/* {errors.location && <span className="text-red-600">Name is required</span>} */}
+                        </div>
+                    </div>
+
+                    <div className="py-4">
+                        <FloatingLabel label="Short Description" type="text" {...register("shortDescription", { required: true })} 
+                        className="border-pcolor focus:border-pcolor  peer-focus:text-pcolor" 
+                        variant="outlined"  />
+                    </div>
                     {/* {errors.shortDescriptionn && <span className="text-red-600">Name is required</span>} */}
 
                     <div className="relative">
                         <textarea
                             id="floating_textarea" {...register("longDescription", { required: true })}
-                            className="peer block w-full rounded-lg border-pcolor bg-transparent px-2.5 pt-4 text-sm text-pcolor focus:border-pcolor focus:ring-0 focus:ring-pcolor dark:border-pcolor dark:pcolor dark:focus:border-pcolor dark:focus:ring-pcolor"
+                            className="peer block w-full rounded-lg border-pcolor bg-transparent px-2.5 pt-4 text-sm  focus:border-pcolor focus:ring-0 focus:ring-pcolor dark:border-pcolor dark:pcolor dark:focus:border-pcolor dark:focus:ring-pcolor"
                             placeholder=" "
                             rows="4"
                         ></textarea>
                         {/* {errors.longDescription && <span className="text-red-600">Name is required</span>} */}
                         <label
                             htmlFor="floating_textarea"
-                            className="absolute left-2.5 top-1.5 peer-focus:px-3 peer-focus:bg-white z-10 origin-[0] -translate-y-4 scale-75 transform text-sm text-pcolor duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-pcolor dark:text-pcolor dark:peer-focus:text-pcolor"
+                            className="absolute left-2.5 top-1.5 peer-focus:px-3 text-gray-500 bg-white peer-focus:bg-white z-10 origin-[0] -translate-y-4 scale-75 transform text-sm duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-pcolor dark:text-pcolor dark:peer-focus:text-pcolor"
                         >
                             Long Description
                         </label>
                     </div>
 
-                    <input className="bg-pcolor w-full py-2" type="submit" />
+                    <input className="bg-pcolor w-full py-2 mt-4 rounded-lg" type="submit" />
                 </form>
             </div>
 
