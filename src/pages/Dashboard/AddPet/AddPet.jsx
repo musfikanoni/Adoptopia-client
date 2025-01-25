@@ -6,6 +6,8 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import Swal from "sweetalert2";
+import useAuth from "../../../hooks/useAuth";
+import useAdmin from "../../../hooks/useAdmin";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -13,6 +15,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 const FileUpload = () => {
     const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic();
+    const {user} = useAuth();
+    const {isAdmin} = useAdmin();
 
     const onSubmit = async (data) => {
         const imageFile = { image: data.image[0] }
@@ -22,6 +26,7 @@ const FileUpload = () => {
             }
         });
         if(res.data.success){
+            const currentDateTime = new Date().toUTCString();
             const petList = {
                 pet_image: res.data.data.display_url,
                 pet_name: data.name,
@@ -29,8 +34,10 @@ const FileUpload = () => {
                 pet_category: data.category,
                 pet_location: data.location,
                 shortDescription: data.shortDescription,
-                longDescription: data.longDescription
-
+                longDescription: data.longDescription,
+                email: user?.email,
+                role: isAdmin ? "Admin" : "User",
+                posted_at: currentDateTime
             }
             const petRes = await axiosPublic.post('/petList', petList)
             console.log(petRes);
@@ -46,6 +53,8 @@ const FileUpload = () => {
         console.log(res.data)
     }
 
+
+    
     return (
         <div>
             <SectionTitle subHeading={'Add a Pet'}

@@ -15,6 +15,8 @@ import AdoptionRequest from "../pages/Dashboard/AdoptionRequest/AdoptionRequest"
 import PrivateRoute from "./PrivateRoute";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
+import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
+import UpdatePet from "../pages/Shared/UpdatePet/UpdatePet";
 
 
  export const router = createBrowserRouter([
@@ -61,6 +63,15 @@ import AdminRoute from "./AdminRoute";
         {
           path: 'addPet',
           element: <AddPet></AddPet>
+        },
+        {
+          path: 'myAddedPets',
+          element: <MyAddedPets></MyAddedPets>
+        },
+        {
+          path: 'updatePet/:id',
+          element: <UpdatePet></UpdatePet>,
+          loader: ({params}) => fetch(`http://localhost:5000/petList/${params.id}`)
         },
         {
           path: 'adoptionRequest',

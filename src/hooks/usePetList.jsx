@@ -4,6 +4,7 @@ const usePetList = () => {
     const [petList, setPetList] = useState([]);
     const [loading, setLoading] = useState(true);
 
+
     useEffect(() => {
         fetch('http://localhost:5000/petList')
         .then(res => res.json())
