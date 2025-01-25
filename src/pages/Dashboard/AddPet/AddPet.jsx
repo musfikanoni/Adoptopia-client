@@ -13,7 +13,7 @@ const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const FileUpload = () => {
-    const { register, handleSubmit, reset } = useForm()
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const axiosPublic = useAxiosPublic();
     const {user} = useAuth();
     const {isAdmin} = useAdmin();
@@ -65,19 +65,20 @@ const FileUpload = () => {
                 <form onSubmit={handleSubmit(onSubmit)} className="border-2 border-pcolor rounded-lg p-7">
                     {/* pet image  */}
                     <FileInput id="file" {...register("image", { required: true })} />
+                    {errors.image && <span className="text-red-600">Image is required</span>} 
 
                     <div className="grid grid-cols-2 gap-5 py-4">
                         <div className="">
                             <FloatingLabel label="Name" {...register("name", { required: true })}
                             className="border-pcolor focus:border-pcolor peer-focus:text-pcolor" 
                             variant="outlined"  />
-                            {/* {errors.name && <span className="text-red-600">Name is required</span>} */}          
+                            {errors.name && <span className="text-red-600">Name is required</span>}          
                         </div>
                         <div >
                             <FloatingLabel label="Age" {...register("age", { required: true })}
                             className="border-pcolor focus:border-pcolor peer-focus:text-pcolor" 
                             variant="outlined"  />
-                            {/* {errors.age && <span className="text-red-600">Name is required</span>} */}
+                            {errors.age && <span className="text-red-600">Pet age is required</span>}
                         </div>
                     </div>
 
@@ -92,14 +93,14 @@ const FileUpload = () => {
                                 <option value="dog">Dog</option>
                                 <option value="fish">Fish</option>
                             </select>
-                            {/* {errors.category && <span className="text-red-600">Name is required</span>} */}
+                            {errors.category && <span className="text-red-600">Pet category is required</span>}
                         </div>
 
                         <div>
                             <FloatingLabel label="Location" type="text" {...register("location", { required: true })}
                             className="border-pcolor focus:border-pcolor  peer-focus:text-pcolor" 
                             variant="outlined"  />
-                            {/* {errors.location && <span className="text-red-600">Name is required</span>} */}
+                            {errors.location && <span className="text-red-600">Pet location is required</span>}
                         </div>
                     </div>
 
@@ -108,7 +109,7 @@ const FileUpload = () => {
                         className="border-pcolor focus:border-pcolor  peer-focus:text-pcolor" 
                         variant="outlined"  />
                     </div>
-                    {/* {errors.shortDescriptionn && <span className="text-red-600">Name is required</span>} */}
+                    {errors.shortDescription && <span className="text-red-600">Pet short description is required</span>}
 
                     <div className="relative">
                         <textarea
@@ -117,7 +118,7 @@ const FileUpload = () => {
                             placeholder=" "
                             rows="4"
                         ></textarea>
-                        {/* {errors.longDescription && <span className="text-red-600">Name is required</span>} */}
+                        {errors.longDescription && <span className="text-red-600">Long description is required</span>}
                         <label
                             htmlFor="floating_textarea"
                             className="absolute left-2.5 top-1.5 peer-focus:px-3 text-gray-500 bg-white peer-focus:bg-white z-10 origin-[0] -translate-y-4 scale-75 transform text-sm duration-300 peer-placeholder-shown:translate-y-0 peer-placeholder-shown:scale-100 peer-focus:-translate-y-4 peer-focus:scale-75 peer-focus:text-pcolor dark:text-pcolor dark:peer-focus:text-pcolor"
@@ -126,7 +127,7 @@ const FileUpload = () => {
                         </label>
                     </div>
 
-                    <input className="bg-pcolor w-full py-2 mt-4 rounded-lg" type="submit" />
+                    <input className="bg-pcolor text-white fonnt-bold w-full py-2 mt-4 rounded-lg" type="submit" />
                 </form>
             </div>
 
