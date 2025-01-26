@@ -17,6 +17,8 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AdminRoute from "./AdminRoute";
 import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
 import UpdatePet from "../pages/Shared/UpdatePet/UpdatePet";
+import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
+import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
 
 
  export const router = createBrowserRouter([
@@ -67,6 +69,14 @@ import UpdatePet from "../pages/Shared/UpdatePet/UpdatePet";
         {
           path: 'myAddedPets',
           element: <MyAddedPets></MyAddedPets>
+        },
+        {
+          path: 'createDonation',
+          element: <CreateDonation></CreateDonation>
+        },
+        {
+          path: 'myDonationCamp',
+          element: <MyDonationCamp></MyDonationCamp>
         },
         {
           path: 'updatePet/:id',

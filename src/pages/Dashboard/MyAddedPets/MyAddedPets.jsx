@@ -1,5 +1,4 @@
 import * as React from 'react';
-import ReactDOM from 'react-dom/client';
 import '../../../tanTable.css';
 
 import {
@@ -13,6 +12,8 @@ import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import useAddedPets from '../../../hooks/useAddedPets';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
 import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import { MdDeleteForever } from 'react-icons/md';
 
 const columnHelper = createColumnHelper();
 
@@ -58,49 +59,57 @@ const MyAddedPets = () => {
   };
 
   const columns = [
-    columnHelper.accessor((row, i) => i + 1, { header: "S/N" }),
+    columnHelper.accessor((row, i) => i + 1, { header: " "}),
     columnHelper.accessor("pet_name", { header: "Pet Name" }),
     columnHelper.accessor("pet_category", { header: "Category" }),
     columnHelper.accessor("pet_image", {
       header: "Image",
       cell: (info) => (
-        <img
-          src={info.getValue()}
-          alt="Pet"
-          className="w-12 h-12 object-cover rounded"
-        />
+        <div className="flex justify-center items-center">
+            <img
+            src={info.getValue()}
+            alt="Pet"
+            className="max-w-lg p-2 h-20 object-cover rounded"
+          />
+        </div>
       ),
     }),
     columnHelper.accessor("adopted", {
       header: "Adoption Status",
       cell: (info) =>
-        info.getValue() ? "✅ Adopted" : "Not Adopted",
+        info.getValue() ? "Adopted" : "Not Adopted",
     }),
     columnHelper.display({
       header: "Actions",
       cell: (info) => {
         const row = info.row.original;
         return (
-          <div className="flex gap-2">
-            <button
-              onClick={() => handleAdoptionStatus(row._id, row.adopted)}
-              className={`px-2 py-1 rounded ${
-                row.adopted ? "bg-blue-500" : "bg-green-500"
-              } text-white`}
-            >
-              {row.adopted ? "Not Adopted" : " Adopted "}
+          <div className="grid grid-cols-3 gap-2">
+            <div className="flex justify-center py-3 px-2">
+              <button
+                onClick={() => handleAdoptionStatus(row._id, row.adopted)}
+                className={`px-2 py-1 rounded ${
+                  row.adopted ? "bg-lime-700" : "bg-lime-500"
+                } text-white`}
+              >
+                {row.adopted ? "Not Adopted" : " Adopted "}
             </button>
-            <Link to={`/dashboard/updatePet/${row._id}`}>
-              <button className="px-2 py-1 bg-yellow-500 rounded text-white">
-                Update
+            </div>
+            <div className="flex justify-center py-3 px-2">
+              <Link to={`/dashboard/updatePet/${row._id}`}>
+                <button className="px-2 py-1 bg-zinc-500 rounded text-white">
+                  Update
+                </button>
+              </Link>
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={() => handleDelete(row._id)}
+                className="px-2 py-1 text-4xl text-red-500 rounded"
+              >
+                 <MdDeleteForever />
               </button>
-            </Link>
-            <button
-              onClick={() => handleDelete(row._id)}
-              className="px-2 py-1 bg-red-500 rounded text-white"
-            >
-              Delete
-            </button>
+            </div>
           </div>
         );
       },
@@ -116,15 +125,18 @@ const MyAddedPets = () => {
 
   return (
     <div>
-      <SectionTitle subHeading={'My Added Pets'} heading={''} />
-      <p>My added pets: {addedPet.length}</p>
-      <div className="p-2 max-w-4xl mx-auto">
-        <table>
-          <thead>
+      <Helmet>
+          <title>Adoptopia | My Added Pets</title>
+      </Helmet>
+      <SectionTitle subHeading={'My Added Pets'} heading={'Manage added all pets'} />
+
+      <div className="p-2 max-w-fit mx-auto">
+        <table className='border-pcolor'>
+          <thead className='bg-pcolor text-white h-14'>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id}>
+                  <th key={header.id} className='border-none px-3'>
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -140,7 +152,7 @@ const MyAddedPets = () => {
             {table.getRowModel().rows.map((row) => (
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id}>
+                  <td key={cell.id} className='border-b border-r border-pcolor text-center px-3'>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}

@@ -51,10 +51,9 @@ const Dashboard = () => {
                                 <IoCreateOutline className="text-xl"></IoCreateOutline>
                                 <NavLink to="/dashboard/createDonation">Create Donation Campaign</NavLink>
                             </li>
-                            <div className="border-b"></div>
                             <li className="flex items-center gap-3">
                                 <FaHandHoldingUsd className="text-xl"></FaHandHoldingUsd>
-                                <NavLink to="/dashboard/MyDonationcampains">My Donation Campaigns</NavLink>
+                                <NavLink to="/dashboard/myDonationCamp">My Donation Campaigns</NavLink>
                             </li>
                             <li className="flex items-center gap-3">
                                 <PiMoney className="text-xl"></PiMoney>

@@ -8,6 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import useAddedPets from "../../../hooks/useAddedPets";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 
 
@@ -62,7 +63,7 @@ const UpdatePet = () => {
 
             if(petRes.data.modifiedCount){
                 Swal.fire({
-                    title: "Your pet added successfully!",
+                    title: "Your pet Update successfully!",
                     icon: "success",
                     draggable: true
                   });
@@ -73,6 +74,9 @@ const UpdatePet = () => {
     return (
         <div>
             <div>
+                <Helmet>
+                    <title>Adoptopia | Update Pet</title>
+                </Helmet>
                 <SectionTitle subHeading={'Update Pet'}
                 heading={'Update your pet info'}
                 ></SectionTitle>
