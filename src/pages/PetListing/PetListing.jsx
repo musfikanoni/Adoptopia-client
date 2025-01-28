@@ -3,22 +3,15 @@ import { Helmet } from "react-helmet";
 import usePetList from "../../hooks/usePetList";
 import PetListCard from "../Shared/PetListCard/PetListCard";
 import { IoIosSearch } from "react-icons/io";
+import { useState } from "react";
 
 const PetListing = () => {
         const [petList] = usePetList();
-        // const [loading, setLoading] = useState(true);
-    
-        // useEffect(() => {
-        //     fetch('')
-        //     .then(res => res.json())
-        //     .then(data => {
-        //         setPetList(data);
-        //     });
-        // }, [])
+        const [dropdown, setDropdown] = useState(0);
         return (
             <div className="max-w-screen-xl mx-auto my-24">
                 <Helmet>
-                <title>Adoptopia | Register</title>
+                    <title>Adoptopia | Register</title>
                 </Helmet>
                 <div className="flex my-10">
                     <div className="w-8/12 flex justify-center ml-20">
@@ -28,7 +21,7 @@ const PetListing = () => {
                         </div>
                     </div>
                     <div className="w-2/12">
-                        <select className="w-full p-3 border-gray-400 rounded-lg -ml-52">
+                        <select defaultIndex className="w-full p-3 border-gray-400 rounded-lg -ml-52">
                             <option>Select Category</option>
                             <option>Cat</option>
                             <option>Rabbit</option>

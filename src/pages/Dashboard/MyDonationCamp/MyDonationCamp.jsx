@@ -9,6 +9,10 @@ const MyDonationCamp = () => {
                 <title>Adoptopia | My Added Pets</title>
             </Helmet>
             <SectionTitle subHeading={'My Donation Campaigns'} heading={'Manage Donation Campaigns'} />
+
+            <div>
+                
+            </div>
         </div>
     );
 };

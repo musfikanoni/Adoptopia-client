@@ -1,11 +1,47 @@
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
 import Cover from "../Cover/Cover";
+import { Modal } from "flowbite-react";
+import useAuth from "../../../hooks/useAuth";
+import { useState } from "react";
+import Payment from "../../Dashboard/Payment/Payment";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+
 
 const DonationDetails = () => {
     const donation = useLoaderData();
     const {pet_image, pet_name, pet_description,pet_location, pet_category, order_date, pet_gender, pet_age,
          maximum_donation_amount, donated_amount} = donation;
+
+
+
+    const [openModal, setOpenModal] = useState(false); 
+    const {user} = useAuth();    
+
+    const handleDonate = () => {
+        if (user && user.email) {
+            setOpenModal(true); 
+        } else {
+            Swal.fire({
+                title: "You are not logged in",
+                text: "Please log in to proceed with the pet adoption!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, login!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    navigate('/login', { state: { from: location } });
+                }
+            });
+        }
+    };
+
+        const onCloseModal = () => {
+            setOpenModal(false);
+        }
+
     return (
         <div className="pb-[450px] bg-lime-100">
             <Helmet>
@@ -34,10 +70,23 @@ const DonationDetails = () => {
                             <p>Maximum Donated Anount: {maximum_donation_amount}$</p>
                             <p>Donated Amount: {donated_amount}$</p>
                             <div className=" flex justify-end">
-                            <button className="btn bg-pcolor px-5 py-2.5 mt-5 text-xl font-bold text-white rounded-lg">Donate Now</button>
+                                <button onClick={() => handleDonate()}
+                                className="btn bg-pcolor px-5 py-2.5 mt-5 text-xl font-bold text-white rounded-lg">Donate Now</button>
                             </div>
-                            
                         </div>
+
+                        <Modal show={openModal} size="md" popup onClose={() => setOpenModal(false)}>
+                            <Modal.Header />
+                            <Modal.Body>
+                            <div className="space-y-3">
+                                    <h3 className="text-xl font-medium text-gray-900 dark:text-white">{pet_name}</h3>
+                                    <SectionTitle subHeading={"Payment"}></SectionTitle>
+                                    
+                                    <Payment></Payment>
+
+                            </div>
+                            </Modal.Body>
+                        </Modal>
                     </div>
                 </div>
             </div>

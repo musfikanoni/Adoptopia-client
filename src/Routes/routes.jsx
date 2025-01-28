@@ -37,7 +37,7 @@ import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
         {
           path: 'petList/:id',
           element: <PetDetails></PetDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/petList/${params.id}`)
+          loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/petList/${params.id}`)
         },
         {
           path: 'donationCampaign',
@@ -46,7 +46,7 @@ import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
         {
           path: 'donationCampaign/:id',
           element: <DonationDetails></DonationDetails>,
-          loader: ({params}) => fetch(`http://localhost:5000/donationCampaign/${params.id}`)
+          loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/donationCampaign/${params.id}`)
         },
         {
           path: 'login',
@@ -81,7 +81,7 @@ import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
         {
           path: 'updatePet/:id',
           element: <UpdatePet></UpdatePet>,
-          loader: ({params}) => fetch(`http://localhost:5000/petList/${params.id}`)
+          loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/petList/${params.id}`)
         },
         {
           path: 'adoptionRequest',

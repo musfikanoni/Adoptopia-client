@@ -6,7 +6,7 @@ const useDonationCampaign = () => {
     const [loading, setLoading] = useState(true);
 
         useEffect(() => {
-            fetch('http://localhost:5000/donationCampaign')
+            fetch('https://assignment-12-server-amber.vercel.app/donationCampaign')
             .then(res => res.json())
             .then(data => {
                 setDonationCampaign(data);

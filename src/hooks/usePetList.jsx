@@ -6,7 +6,7 @@ const usePetList = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/petList')
+        fetch('https://assignment-12-server-amber.vercel.app/petList')
         .then(res => res.json())
         .then(data => {
             setPetList(data);
