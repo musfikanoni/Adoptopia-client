@@ -10,8 +10,8 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 
 const DonationDetails = () => {
     const donation = useLoaderData();
-    const {pet_image, pet_name, pet_description,pet_location, pet_category, order_date, pet_gender, pet_age,
-         maximum_donation_amount, donated_amount} = donation;
+    const {pet_image, pet_name, shortDescription, longDescription,
+        maximum_amount, donated_amount} = donation;
 
 
 
@@ -61,14 +61,10 @@ const DonationDetails = () => {
                         </div>
                         <div className="lg:pl-7 md:pl-7 pl-0">
                             <h5 className="text-2xl font-bold lg:mt-0 mt-5 tracking-tight text-gray-900 dark:text-white">{pet_name}</h5>
-                            <p>DesCription: {pet_description}</p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">Pet Age: {pet_age}</p>
-                            <p>Location: {pet_location}</p>
-                            <p>Order Date: {order_date}</p>
-                            <p>Category: {pet_category}</p>
-                            <p>Pet Gender: {pet_gender}</p>
-                            <p>Maximum Donated Anount: {maximum_donation_amount}$</p>
-                            <p>Donated Amount: {donated_amount}$</p>
+                            <p> <span className="font-bold text-lg text-slate-800">Short-Description:</span> {shortDescription}</p>
+                            <p> <span className="font-bold text-lg text-slate-800">Long-Description:</span> {longDescription}</p>
+                            <p> <span className="font-bold text-lg text-slate-800">Maximum Donated Anount:</span> {maximum_amount}$</p>
+                            <p> <span className="font-bold text-lg text-slate-800">Donated Amount:</span> {donated_amount}$</p>
                             <div className=" flex justify-end">
                                 <button onClick={() => handleDonate()}
                                 className="btn bg-pcolor px-5 py-2.5 mt-5 text-xl font-bold text-white rounded-lg">Donate Now</button>

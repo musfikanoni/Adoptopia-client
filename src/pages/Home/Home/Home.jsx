@@ -12,9 +12,9 @@ const Home = () => {
             <Banner></Banner>
             
             <div className="max-w-screen-xl mx-auto">
-                <Category></Category>
-                <AboutUs></AboutUs>
+                <Category></Category>    
             </div>
+            <AboutUs></AboutUs>
         </div>
     );
 };

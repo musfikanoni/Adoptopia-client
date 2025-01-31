@@ -28,6 +28,12 @@ body {
 .donation-banner {
     background-image: url('./assets/bg-banner/donation-details.jpg');
 }
+.cam-banner {
+    background-image: url('./assets/bg-banner/cam-card.jpg');
+}
+.about-banner {
+    background-image: url('./assets/bg-banner/aboutUs.jpg');
+}
 
 .css-13cymwt-control {
     border-radius: 8px !important; 

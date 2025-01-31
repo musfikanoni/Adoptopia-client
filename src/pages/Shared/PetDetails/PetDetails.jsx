@@ -28,7 +28,7 @@ const PetDetails = () => {
 
     const axiosSecure = useAxiosSecure();
     const pet = useLoaderData();
-    const {_id, pet_id, pet_name, pet_image, pet_age, pet_location, order_date, Description, pet_category, gender } = pet;
+    const {_id, pet_id, pet_name, pet_image, pet_age, pet_location, posted_at, order_date, shortDescription, longDescription, pet_category } = pet;
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
@@ -43,9 +43,9 @@ const PetDetails = () => {
             pet_age,
             pet_location, 
             order_date, 
-            Description, 
+            shortDescription, 
+            longDescription,
             pet_category, 
-            gender,
             email: user?.email,
             name: user?.displayName
         }
@@ -103,12 +103,12 @@ const PetDetails = () => {
                         </div>
                         <div className="lg:pl-7 md:pl-7 pl-0">
                             <h5 className="text-2xl font-bold lg:mt-0 mt-5 tracking-tight text-gray-900 dark:text-white">{pet_name}</h5>
-                            <p>Description: {Description}</p>
-                            <p className="font-normal text-gray-700 dark:text-gray-400">Pet Age: {pet_age}</p>
-                            <p>Location: {pet_location}</p>
-                            <p>Order Date: {order_date}</p>
-                            <p>Category: {pet_category}</p>
-                            <p>Pet Gender: {gender}</p>
+                            <p><span className="font-bold text-md text-slate-800">Short-description:</span> {shortDescription}</p>
+                            <p><span className="font-bold text-md text-slate-800">Long-description:</span> {longDescription}</p>
+                            <p className="font-bold text-md text-slate-800">Pet Age: {pet_age}</p>
+                            <p><span className="font-bold text-md text-slate-800">Location:</span> {pet_location}</p>
+                            <p><span className="font-bold text-md text-slate-800">Order Date:</span> {posted_at}</p>
+                            <p><span className="font-bold text-md text-slate-800">Category:</span> {pet_category}</p>
                             <div className="flex justify-end">
                                 <button
                                     onClick={() => handleAdopte()}

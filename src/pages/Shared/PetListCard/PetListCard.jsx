@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // import usePetList from "../../../hooks/usePetList";
 
 const PetListCard = ({pets}) => {
-    const {_id, pet_name, pet_image, pet_age, pet_location, order_date} = pets;
+    const {_id, pet_name, pet_image, pet_age, pet_location,} = pets;
     // const[petList] = usePetList();
     return (
 
