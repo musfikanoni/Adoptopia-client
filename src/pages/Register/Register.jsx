@@ -3,7 +3,7 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
@@ -13,6 +13,7 @@ const Register = () => {
     const axiosPublic = useAxiosPublic();
     const [showPassword, setShowPassword] = useState(false);
     const {createUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
     const {register, handleSubmit, reset,
     formState: { errors }} = useForm();
 
@@ -53,8 +54,9 @@ const Register = () => {
                             }
                         });
                     }
+                    navigate('/');
                 })
-
+                
             })
             .catch(error => console.log(error));
         })
