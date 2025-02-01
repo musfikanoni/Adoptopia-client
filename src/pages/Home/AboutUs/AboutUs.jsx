@@ -1,6 +1,7 @@
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import ab1 from '../../../assets/Home/ab.webp';
 import ab2 from '../../../assets/Home/ab-2.jpg';
+import { MotionValue } from "motion";
 
 
 const AboutUs = () => {

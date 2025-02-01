@@ -9,7 +9,7 @@ import { VscGitPullRequestNewChanges } from "react-icons/vsc";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import logo from '../assets/Home/logo.png';
-// import useAdoptionReq from "../hooks/useAdoptionReq";
+
 
 const Dashboard = () => {
     //TODO
@@ -45,8 +45,8 @@ const Dashboard = () => {
                         
                         </>:<>
                             <li className="flex items-center gap-3 py-2">
-                            <MdAssignmentAdd className="text-2xl text-white"></MdAssignmentAdd>
-                            <NavLink className="text-white font-bold text-md" to="/dashboard/addPet">Add a pet</NavLink>
+                                <MdAssignmentAdd className="text-2xl text-white"></MdAssignmentAdd>
+                                <NavLink className="text-white font-bold text-md" to="/dashboard/addPet">Add a pet</NavLink>
                             </li>
                             <li className="flex items-center gap-3 py-2">
                                 <RiFunctionAddLine className="text-2xl text-white"></RiFunctionAddLine>
