@@ -6,7 +6,7 @@ This project is a **Pet Adoption Platform** that facilitates the adoption proces
 
 ## 2. Screenshot
 
-![](https://i.ibb.co.com/4HNch6V/Screenshot-212.png)
+!(https://i.ibb.co.com/4HNch6V/Screenshot-212.png)
 
 ## 3. Main Technologies Used
 
