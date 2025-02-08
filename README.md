@@ -1,17 +1,12 @@
 Adoptopia
 
-## Live Project Link
-
-https://ph-assignment-12.netlify.app/
-
-
 ## 1. Project Overview
 
 This project is a **Pet Adoption Platform** that facilitates the adoption process by allowing users to browse available pets, submit adoption requests, and contribute to donation campaigns. The platform also includes an admin dashboard for managing users, pets, and donations.
 
 ## 2. Screenshot
 
-![Pet Adoption Platform Screenshot](https://i.ibb.co/4HNch6V/Screenshot-212.png)
+![Pet Adoption Platform Screenshot](https://i.ibb.co.com/4HNch6V/Screenshot-212.png)
 
 ## 3. Main Technologies Used
 
