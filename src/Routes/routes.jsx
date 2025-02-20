@@ -19,12 +19,16 @@ import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
 import UpdatePet from "../pages/Shared/UpdatePet/UpdatePet";
 import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
 import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
+import Profile from "../pages/Dashboard/Profile/Profile";
+import MyDonation from "../pages/Dashboard/MyDonation/MyDonation";
+import Error from "../pages/Error/Error";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <Error></Error>,
       children: [
         {
             path: '/',
@@ -79,6 +83,10 @@ import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
           element: <MyDonationCamp></MyDonationCamp>
         },
         {
+          path: 'profile',
+          element: <Profile></Profile>
+        },
+        {
           path: 'updatePet/:id',
           element: <UpdatePet></UpdatePet>,
           loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/petList/${params.id}`)
@@ -86,6 +94,10 @@ import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
         {
           path: 'adoptionRequest',
           element: <AdoptionRequest></AdoptionRequest>
+        },
+        {
+          path: 'myDonations',
+          element: <MyDonation></MyDonation>
         },
         {
           path: 'users',
