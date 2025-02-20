@@ -6,17 +6,15 @@ import { useEffect, useState } from 'react';
 const Main = () => {
     const [isDark, setIsDark] = useState(() => {
         const savedMode = localStorage.getItem("isDark");
-        return savedMode === "true"; // Convert string to boolean
+        return savedMode === "true"; 
       });
     
-      // Handle dark mode toggle
       const handleDark = () => {
         const newMode = !isDark;
-        setIsDark(newMode); // Update state
-        localStorage.setItem("isDark", newMode); // Save to localStorage
+        setIsDark(newMode);
+        localStorage.setItem("isDark", newMode); 
       };
-    
-      // Apply or remove the "dark" class on <body>
+
       useEffect(() => {
         if (isDark) {
           document.body.classList.add("dark");

@@ -67,6 +67,10 @@ import Error from "../pages/Error/Error";
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         {
+          path: 'profile',
+          element: <Profile></Profile>
+        },
+        {
           path: 'addPet',
           element: <AddPet></AddPet>
         },
@@ -81,10 +85,6 @@ import Error from "../pages/Error/Error";
         {
           path: 'myDonationCamp',
           element: <MyDonationCamp></MyDonationCamp>
-        },
-        {
-          path: 'profile',
-          element: <Profile></Profile>
         },
         {
           path: 'updatePet/:id',

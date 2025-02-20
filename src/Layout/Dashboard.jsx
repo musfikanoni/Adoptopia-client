@@ -44,21 +44,22 @@ const Dashboard = () => {
                         <p className="text-center text-gray-100">{email}</p>
                     </div>
 
-                    <NavLink to="/dashboard/profile">
-                        {({ isActive }) => (
-                            <li
-                                className={`flex items-center gap-3 px-7 py-2 ${
-                                    isActive ? 'text-pcolor bg-gray-900 font-bold' : 'text-white'
-                                }`}
-                            >
-                                <FaRegCircleUser className="text-3xl" />
-                                <span>Profile</span>
-                            </li>
-                        )}
-                    </NavLink>
+                    
 
                     {isAdmin ? (
                         <>
+                            <NavLink to="/dashboard/profile">
+                                {({ isActive }) => (
+                                    <li
+                                        className={`flex items-center gap-3 px-7 py-2 ${
+                                            isActive ? 'text-pcolor bg-gray-900 font-bold' : 'text-white'
+                                        }`}
+                                    >
+                                        <FaRegCircleUser className="text-3xl" />
+                                        <span>Profile</span>
+                                    </li>
+                                )}
+                            </NavLink>
                             <NavLink to="/dashboard/users">
                                 {({ isActive }) => (
                                     <li
@@ -100,6 +101,18 @@ const Dashboard = () => {
                         </>
                     ) : (
                         <>
+                            <NavLink to="/dashboard/profile">
+                                {({ isActive }) => (
+                                    <li
+                                        className={`flex items-center gap-3 px-7 py-2 ${
+                                            isActive ? 'text-pcolor bg-gray-900 font-bold' : 'text-white'
+                                        }`}
+                                    >
+                                        <FaRegCircleUser className="text-3xl" />
+                                        <span>Profile</span>
+                                    </li>
+                                )}
+                            </NavLink>
                             <NavLink to="/dashboard/addPet">
                                 {({ isActive }) => (
                                     <li
