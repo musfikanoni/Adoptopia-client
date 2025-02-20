@@ -63,7 +63,7 @@ const NavBar = ({handleDark, isDark}) =>  {
                                         <span className="block truncate text-sm font-medium">{user?.email}</span>
                                     </Dropdown.Header>
                                     <Dropdown.Item><Link to="/dashboard/addPet">Dashboard</Link></Dropdown.Item>
-                                    <Dropdown.Item><Button onClick={handleLogOut}>Log out</Button></Dropdown.Item>
+                                    <Dropdown.Item><button className="bg-pcolor w-full py-2 px-5 rounded-lg font-bold" onClick={handleLogOut}>Log out</button></Dropdown.Item>
                                 </Dropdown>
                                 <Navbar.Toggle />
                             </div>

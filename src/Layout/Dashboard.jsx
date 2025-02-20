@@ -9,23 +9,41 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../hooks/useAdmin";
 import logo from '../assets/Home/logo.png';
 import { FaRegCircleUser } from "react-icons/fa6";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
+import { Avatar } from "flowbite-react";
+import NavBar from "../pages/Shared/NavBar/NavBar";
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
+    const {user} = useContext(AuthContext);
+    const name = user.displayName;
+    const photo = user.photoURL;
+    const email = user.email;
 
     return (
         <div className="flex">
             {/* Dashboard sidebar */}
-            <div className="w-72 min-h-screen bg-pcolor">
+            <NavBar></NavBar>
+            <div className="w-72 min-h-screen mt-20 bg-pcolor">
                 <ul className="">
-                    <li>
+                    {/* <li>
                         <Link to="/">
                             <div className="flex gap-3 items-center pb-5 p-7">
                                 <img className="h-12 bg-white rounded-full" src={logo} alt="" />
                                 <h3 className="text-3xl text-white font-bold">Adoptopia</h3>
                             </div>
                         </Link>
-                    </li>
+                    </li> */}
+
+                    <div className="flex flex-wrap pt-10 justify-center gap-2">
+                        <Avatar img={photo} rounded size="lg" bordered />
+                    </div>
+                    <div className="py-5">
+                        <h3 className="text-xl text-white text-center font-semibold">{name}</h3>
+                        <p className="text-center text-gray-100">{email}</p>
+                    </div>
+
                     <NavLink to="/dashboard/profile">
                         {({ isActive }) => (
                             <li
