@@ -2,9 +2,19 @@ import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import ab1 from '../../../assets/Home/ab.webp';
 import ab2 from '../../../assets/Home/ab-2.jpg';
 import { MotionValue } from "motion";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from "react";
 
 
 const AboutUs = () => {
+    useEffect(() => {
+        AOS.init({
+          duration: 1000, 
+          once: true,
+        });
+      }, []);
+
     return (
         <div className="my-20">
             <SectionTitle subHeading={'About Us'}

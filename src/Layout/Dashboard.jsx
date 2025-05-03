@@ -48,7 +48,7 @@ const Dashboard = () => {
 
                     {isAdmin ? (
                         <>
-                            <NavLink to="/dashboard/profile">
+                            <NavLink to="/dashboard/adminDashboard">
                                 {({ isActive }) => (
                                     <li
                                         className={`flex items-center gap-3 px-7 py-2 ${
@@ -101,15 +101,15 @@ const Dashboard = () => {
                         </>
                     ) : (
                         <>
-                            <NavLink to="/dashboard/profile">
+                            <NavLink to="/dashboard/userDashboard">
                                 {({ isActive }) => (
                                     <li
                                         className={`flex items-center gap-3 px-7 py-2 ${
                                             isActive ? 'text-pcolor bg-gray-900 font-bold' : 'text-white'
-                                        }`}
+                                        }`} 
                                     >
                                         <FaRegCircleUser className="text-3xl" />
-                                        <span>Profile</span>
+                                        <span>User Dashboard</span>
                                     </li>
                                 )}
                             </NavLink>

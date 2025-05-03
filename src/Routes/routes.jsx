@@ -19,9 +19,11 @@ import MyAddedPets from "../pages/Dashboard/MyAddedPets/MyAddedPets";
 import UpdatePet from "../pages/Shared/UpdatePet/UpdatePet";
 import CreateDonation from "../pages/Dashboard/CreateDonation/CreateDonation";
 import MyDonationCamp from "../pages/Dashboard/MyDonationCamp/MyDonationCamp";
-import Profile from "../pages/Dashboard/Profile/Profile";
+import AdminDashboard from "../pages/Dashboard/AdminDashboard/AdminDashboard";
 import MyDonation from "../pages/Dashboard/MyDonation/MyDonation";
 import Error from "../pages/Error/Error";
+import UserOnlyRoute from "./UserOnlyRoute";
+import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
 
 
  export const router = createBrowserRouter([
@@ -67,24 +69,25 @@ import Error from "../pages/Error/Error";
       element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
       children: [
         {
-          path: 'profile',
-          element: <Profile></Profile>
+          index: true,
+          path: 'userDashboard',
+          element: <UserOnlyRoute><UserDashboard></UserDashboard></UserOnlyRoute>
         },
         {
           path: 'addPet',
-          element: <AddPet></AddPet>
+          element: <UserOnlyRoute><AddPet /></UserOnlyRoute>
         },
         {
           path: 'myAddedPets',
-          element: <MyAddedPets></MyAddedPets>
+          element: <UserOnlyRoute><MyAddedPets></MyAddedPets></UserOnlyRoute>
         },
         {
           path: 'createDonation',
-          element: <CreateDonation></CreateDonation>
+          element: <UserOnlyRoute><CreateDonation></CreateDonation></UserOnlyRoute>
         },
         {
           path: 'myDonationCamp',
-          element: <MyDonationCamp></MyDonationCamp>
+          element: <UserOnlyRoute><MyDonationCamp></MyDonationCamp></UserOnlyRoute>
         },
         {
           path: 'updatePet/:id',
@@ -98,6 +101,11 @@ import Error from "../pages/Error/Error";
         {
           path: 'myDonations',
           element: <MyDonation></MyDonation>
+        },
+        {
+          index: true,
+          path: 'adminDashbard',
+          element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
         {
           path: 'users',

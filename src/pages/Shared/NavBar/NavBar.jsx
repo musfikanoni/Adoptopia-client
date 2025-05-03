@@ -6,10 +6,12 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import userIcon from '../../../assets/user.png';
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = ({handleDark, isDark}) =>  {
     const { user, logOut } = useContext(AuthContext);
     const location = useLocation();
+    const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
         logOut()
@@ -34,6 +36,14 @@ const NavBar = ({handleDark, isDark}) =>  {
             Donation Campaigns
         </Link>
     </>
+
+// let dashboardPath = '/dashboard';
+// if (!isAdminLoading) {
+//     dashboardPath = isAdmin ? '/dashboard/adminDashboard' : '/dashboard/userDashboard';
+// }
+
+
+
 
     return (
         <div className="fixed z-10 backdrop-blur-lg top-0 bg-opacity-70 bg-black text-white w-full">
@@ -62,7 +72,8 @@ const NavBar = ({handleDark, isDark}) =>  {
                                         <span className="block text-sm">{user?.displayName || 'User'}</span>
                                         <span className="block truncate text-sm font-medium">{user?.email}</span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item><Link to="/dashboard/addPet">Dashboard</Link></Dropdown.Item>
+                                    <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item>
+                                    {/* <Dropdown.Item><Link to={`/dashboard/${isAdmin ? 'adminDashboard' : 'userDashboard'}`}>Dashboard</Link>                                    </Dropdown.Item> */}
                                     <Dropdown.Item><button className="bg-pcolor w-full py-2 px-5 rounded-lg font-bold" onClick={handleLogOut}>Log out</button></Dropdown.Item>
                                 </Dropdown>
                                 <Navbar.Toggle />
