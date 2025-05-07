@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword, getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../firebase/firebase.init";
 import useAxiosPublic from "../hooks/useAxiosPublic";
+import { setPersistence, browserLocalPersistence } from "firebase/auth";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
@@ -45,26 +46,53 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            if(currentUser){
-                const userInfo = { email: currentUser.email }
-                axiosPublic.post('/jwt', userInfo)
-                .then(res => {
-                    if(res.data.token) {
-                        localStorage.setItem('access-token', res.data.token);
+        setPersistence(auth, browserLocalPersistence)
+            .then(() => {
+                const unsubscribe = onAuthStateChanged(auth, currentUser => {
+                    setUser(currentUser);
+                    if (currentUser) {
+                        const userInfo = { email: currentUser.email };
+                        axiosPublic.post('/jwt', userInfo)
+                            .then(res => {
+                                if (res.data.token) {
+                                    localStorage.setItem('access-token', res.data.token);
+                                }
+                            });
+                    } else {
+                        localStorage.removeItem('access-token');
                     }
-                })
-            }
-            else {
-                localStorage.removeItem('access-token');
-            }
-            setLoading(false);
-        });
-        return() => {
-            return unsubscribe();
-        }
-    }, [axiosPublic])
+                    setLoading(false);
+                });
+                return unsubscribe;
+            })
+            .catch(error => {
+                console.error("Error setting persistence:", error);
+                setLoading(false);
+            });
+    }, [axiosPublic]);
+    
+
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, currentUser => {
+    //         setUser(currentUser);
+    //         if(currentUser){
+    //             const userInfo = { email: currentUser.email }
+    //             axiosPublic.post('/jwt', userInfo)
+    //             .then(res => {
+    //                 if(res.data.token) {
+    //                     localStorage.setItem('access-token', res.data.token);
+    //                 }
+    //             })
+    //         }
+    //         else {
+    //             localStorage.removeItem('access-token');
+    //         }
+    //         setLoading(false);
+    //     });
+    //     return() => {
+    //         return unsubscribe();
+    //     }
+    // }, [axiosPublic])
 
     const authInfo = {
         user,
