@@ -1,18 +1,18 @@
 import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import logo from '../../../assets/site-logo.png';
 import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useLocation
-import { useContext } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
 import userIcon from '../../../assets/user.png';
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa";
 import useAuth from "../../../hooks/useAuth";
+import { useMemo } from "react";
+import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = ({handleDark, isDark}) =>  {
-    const { logOut } = useContext(AuthContext);
     const location = useLocation();
-    const {user} = useAuth();
+    const { user, logOut } = useAuth();
     const navigate = useNavigate();
+    const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
         logOut()
@@ -39,10 +39,7 @@ const NavBar = ({handleDark, isDark}) =>  {
         </Link>
     </>
 
-const dashboardPath = user?.role === 'admin' ? '/dashboard/userDashboard' : '/dashboard/adminDashboard';
-
-
-
+    const dashboardPath =  isAdmin ? '/dashboard/adminDashboard' : '/dashboard/userDashboard';
 
 
 
