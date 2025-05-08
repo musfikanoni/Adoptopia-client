@@ -1,22 +1,24 @@
 import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import logo from '../../../assets/site-logo.png';
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
-import { useContext } from "react";
-import { AuthContext } from "../../../Providers/AuthProvider";
+import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useLocation
 import userIcon from '../../../assets/user.png';
 import { LuSun } from "react-icons/lu";
 import { FaMoon } from "react-icons/fa";
+import useAuth from "../../../hooks/useAuth";
+import { useMemo } from "react";
 import useAdmin from "../../../hooks/useAdmin";
 
 const NavBar = ({handleDark, isDark}) =>  {
-    const { user, logOut } = useContext(AuthContext);
     const location = useLocation();
+    const { user, logOut } = useAuth();
+    const navigate = useNavigate();
     const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
         logOut()
         .then(() => { })
         .catch(error => console.log(error));
+        navigate('/')
     }
 
     const navLinks = <>
@@ -30,18 +32,14 @@ const NavBar = ({handleDark, isDark}) =>  {
         >
             Pet Listing
         </Link>
-        <Link to='/donationCampaign' 
+        <Link to='/donationCampaign' cd 
             className={`cursor-pointer text-[16px] ${location.pathname === '/donationCampaign' ? 'text-pcolor border-b-2 border-pcolor' : ''}`}
         >
             Donation Campaigns
         </Link>
     </>
 
-// let dashboardPath = '/dashboard';
-// if (!isAdminLoading) {
-//     dashboardPath = isAdmin ? '/dashboard/adminDashboard' : '/dashboard/userDashboard';
-// }
-
+    const dashboardPath =  isAdmin ? '/dashboard/adminDashboard' : '/dashboard/userDashboard';
 
 
 
@@ -72,8 +70,7 @@ const NavBar = ({handleDark, isDark}) =>  {
                                         <span className="block text-sm">{user?.displayName || 'User'}</span>
                                         <span className="block truncate text-sm font-medium">{user?.email}</span>
                                     </Dropdown.Header>
-                                    <Dropdown.Item><Link to='/dashboard'>Dashboard</Link></Dropdown.Item>
-                                    {/* <Dropdown.Item><Link to={`/dashboard/${isAdmin ? 'adminDashboard' : 'userDashboard'}`}>Dashboard</Link>                                    </Dropdown.Item> */}
+                                    <Dropdown.Item><Link to={dashboardPath}>Dashboard</Link></Dropdown.Item>
                                     <Dropdown.Item><button className="bg-pcolor w-full py-2 px-5 rounded-lg font-bold" onClick={handleLogOut}>Log out</button></Dropdown.Item>
                                 </Dropdown>
                                 <Navbar.Toggle />

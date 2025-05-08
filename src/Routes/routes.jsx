@@ -103,8 +103,8 @@ import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
           element: <MyDonation></MyDonation>
         },
         {
-          index: true,
-          path: 'adminDashbard',
+          // index: true,
+          path: 'adminDashboard',
           element: <AdminRoute><AdminDashboard></AdminDashboard></AdminRoute>
         },
         {
