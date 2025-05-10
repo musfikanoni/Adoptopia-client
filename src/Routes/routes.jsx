@@ -24,6 +24,7 @@ import MyDonation from "../pages/Dashboard/MyDonation/MyDonation";
 import Error from "../pages/Error/Error";
 import UserOnlyRoute from "./UserOnlyRoute";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
+import AllPets from "../pages/Dashboard/AllUsers/AllPets/AllPets";
 
 
  export const router = createBrowserRouter([
@@ -110,6 +111,10 @@ import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
         {
           path: 'users',
           element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+        },
+        {
+          path: 'allPets',
+          element: <AdminRoute><AllPets /></AdminRoute>
         }
       ]
     }
