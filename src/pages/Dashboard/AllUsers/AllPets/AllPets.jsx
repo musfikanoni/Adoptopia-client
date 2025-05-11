@@ -27,7 +27,36 @@ const AllPets = () => {
       }, [allPets]);
     
     //   Delete handler
-
+      const handleDelete = (id) => {
+        Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axiosSecure.delete(`/allPets/${id}`).then((res) => {
+              if (res.data.deletedCount > 0) {
+                Swal.fire("Deleted!", "Your pet has been removed.", "success");
+                setData((prevData) => prevData.filter((pet) => pet._id !== id));
+              }
+            });
+          }
+        });
+      };
+    
+      const handleAdoptionStatus = (id, isAdopted) => {
+        axiosSecure.patch(`/petList/${id}`, { adopted: !isAdopted }).then(() => {
+          setData((prevData) =>
+            prevData.map((pet) =>
+              pet._id === id ? { ...pet, adopted: !isAdopted } : pet
+            )
+          );
+        });
+      };
     
       const columns = [
         columnHelper.accessor((row, i) => i + 1, { header: " "}),
