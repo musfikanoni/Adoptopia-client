@@ -1,4 +1,4 @@
-import useALlPets from "../../../../hooks/useALlPets";
+import useALlPets from "../../../hooks/useALlPets";
 // import '../../../tanTable.css';
 import * as React from 'react';
 
@@ -9,8 +9,8 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { Helmet } from "react-helmet";
-import SectionTitle from "../../../../components/SectionTitle/SectionTitle";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { MdDeleteForever } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -74,7 +74,46 @@ const AllPets = () => {
             </div>
           ),
         }),
-
+        columnHelper.accessor("adopted", {
+          header: "Adoption Status",
+          cell: (info) =>
+            info.getValue() ? "Adopted" : "Not Adopted",
+        }),
+        columnHelper.display({
+          header: "Actions",
+          cell: (info) => {
+            const row = info.row.original;
+                    return (
+          <div className="grid grid-cols-3 gap-2">
+            <div className="flex justify-center py-3 px-2">
+              <button
+                onClick={() => handleAdoptionStatus(row._id, row.adopted)}
+                className={`px-2 py-1 rounded ${
+                  row.adopted ? "bg-lime-700" : "bg-lime-500"
+                } text-white`}
+              >
+                {row.adopted ? "Not Adopted" : " Adopted "}
+            </button>
+            </div>
+            <div className="flex justify-center py-3 px-2">
+              <Link to={`/dashboard/updateAllPet/${row._id}`}>
+                <button className="px-2 py-1 bg-zinc-500 rounded text-white">
+                  Update
+                </button>
+              </Link>
+            </div>
+            <div className="flex justify-center">
+              <button
+                onClick={() => handleDelete(row._id)}
+                className="px-2 py-1 text-4xl text-red-500 rounded"
+              >
+                 <MdDeleteForever />
+              </button>
+            </div>
+          </div>
+        );
+      },
+    }),
   ];
 
 
@@ -85,12 +124,12 @@ const AllPets = () => {
   });
     return (
         <div className='lg:mt-20'>
-            <h1 className='text-7xl'>Total Pets: {allPets.length}  </h1>
+            {/* <h1 className='text-7xl'>Total Pets: {allPets.length}  </h1> */}
              <div>
       <Helmet>
           <title>Adoptopia | All Pets</title>
       </Helmet>
-      <SectionTitle subHeading={'My Added Pets'} heading={'Manage added all pets'} />
+      <SectionTitle subHeading={'All Pets'} heading={'Manage all pets'} />
 
       <div className="p-2 max-w-fit mx-auto">
         <table className='border-pcolor'>
