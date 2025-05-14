@@ -24,7 +24,8 @@ import MyDonation from "../pages/Dashboard/MyDonation/MyDonation";
 import Error from "../pages/Error/Error";
 import UserOnlyRoute from "./UserOnlyRoute";
 import UserDashboard from "../pages/Dashboard/UserDashboard/UserDashboard";
-import AllPets from "../pages/Dashboard/AllUsers/AllPets/AllPets";
+import AllPets from "../pages/Dashboard/AllPets/AllPets";
+import UpdateAllPetsData from "../pages/Dashboard/UpdateAllPetsData/UpdateAllPetsData";
 
 
  export const router = createBrowserRouter([
@@ -94,6 +95,11 @@ import AllPets from "../pages/Dashboard/AllUsers/AllPets/AllPets";
           path: 'updatePet/:id',
           element: <UpdatePet></UpdatePet>,
           loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/petList/${params.id}`)
+        },
+        {
+          path: 'updateAllPet/:id',
+          element: <UpdateAllPetsData />,
+          loader: ({params}) => fetch(`http://localhost:5001/allPets/${params.id}`)
         },
         {
           path: 'adoptionRequest',
