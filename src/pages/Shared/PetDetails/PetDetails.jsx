@@ -34,22 +34,22 @@ const PetDetails = () => {
     const location = useLocation();
 
     const onSubmit = (data) => {
-        const adoptionData = {
-            ...data,
-            petId: _id,
-            pet_id,
-            pet_name,
-            pet_image,
-            pet_age,
-            pet_location, 
-            order_date, 
-            shortDescription, 
-            longDescription,
-            pet_category, 
-            email: user?.email,
-            name: user?.displayName
-        }
-        axiosSecure.post('/adoptionRequest', adoptionData)
+    const adoptionData = {
+        ...data,
+        petId: _id,
+        pet_id,
+        pet_name,
+        pet_image,
+        pet_age,
+        pet_location, 
+        order_date, 
+        pet_category,
+        ownerEmail: pet?.email,
+        requestorEmail: user?.email,
+        name: user?.displayName
+    }
+
+        axiosSecure.post(`/adoptionRequest/${_id}`, adoptionData)
         .then(res => {
             console.log(res.data);
             reset();
