@@ -99,7 +99,7 @@ import UpdateAllPetsData from "../pages/Dashboard/UpdateAllPetsData/UpdateAllPet
         {
           path: 'updateAllPet/:id',
           element: <UpdateAllPetsData />,
-          loader: ({params}) => fetch(`http://localhost:5001/allPets/${params.id}`)
+          loader: ({params}) => fetch(`https://assignment-12-server-amber.vercel.app/allPets/${params.id}`)
         },
         {
           path: 'adoptionRequest',
