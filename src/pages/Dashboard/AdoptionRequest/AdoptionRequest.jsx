@@ -2,12 +2,12 @@ import useAdoptionReq from "../../../hooks/useAdoptionReq";
 import { Table } from "flowbite-react";
 
 const AdoptionRequest = () => {
-    const [reqCart] = useAdoptionReq();
-    // console.log(reqCart);
+    const [ requestedPets ] = useAdoptionReq();
+    console.log(requestedPets);
     
     return (
         <div>
-            <h2 className="text-3xl font-semibold">Total Adoption Request: {reqCart.length}</h2>
+            <h2 className="text-3xl font-semibold mt-40">Total Adoption Request: {requestedPets}</h2>
             <div className="overflow-x-auto m-8">
             <Table hoverable>
                 <Table.Head style={{backgroundColor: 'pcolor'}}>
@@ -22,7 +22,7 @@ const AdoptionRequest = () => {
                 </Table.Head>
                 <Table.Body className="divide-y">
                  {
-                    reqCart.map((data, index)=> <Table.Row key={data._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                    requestedPets.map((data, index)=> <Table.Row key={data._id} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                         <Table.Cell>{index + 1}</Table.Cell>
                         <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                         {data.name}
